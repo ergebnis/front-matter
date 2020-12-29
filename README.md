@@ -25,7 +25,7 @@ $ composer require ergebnis/front-matter
 
 This packages comes with an [`Ergebnis\FrontMatter\Parser`](src/Parser.php) interface and provides the following parsers:
 
- - [`Ergebnis\FrontMatter\YamlParser`](#yamlparser).
+ - [`Ergebnis\FrontMatter\YamlParser`](#yamlparser)
 
 ### `YamlParser`
 
