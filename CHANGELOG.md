@@ -37,5 +37,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 
 [#2]: https://github.com/ergebnis/front-matter/pull/2
 [#8]: https://github.com/ergebnis/front-matter/pull/8
+[#9]: https://github.com/ergebnis/front-matter/pull/9
 
 [@localheinz]: https://github.com/localheinz
