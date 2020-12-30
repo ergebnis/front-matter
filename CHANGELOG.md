@@ -12,6 +12,10 @@ For a full diff see [`0.2.0...main`][0.2.0...main].
 
 For a full diff see [`0.1.0...0.2.0`][0.1.0...0.2.0].
 
+### Changed
+
+* Renamed `Exception\InvalidFrontMatter::keysCanNotBeNumeric()` to `Exception\InvalidFrontMatter::notAllKeysAreStrings()` ([#9]), by [@localheinz]
+
 ### Removed
 
 * Removed `Parsed\FrontMatter` and `Parsed\Content` ([#8]), by [@localheinz]

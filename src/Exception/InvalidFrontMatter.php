@@ -20,8 +20,8 @@ final class InvalidFrontMatter extends \InvalidArgumentException
         return new self('Front matter is invalid.');
     }
 
-    public static function keysCanNotBeNumeric(): self
+    public static function notAllKeysAreStrings(): self
     {
-        return new self('The keys of front matter data can not be numeric.');
+        return new self('The keys of front matter data need to be strings.');
     }
 }
