@@ -30,10 +30,10 @@ final class InvalidFrontMatterTest extends Framework\TestCase
         self::assertSame('Front matter is invalid.', $exception->getMessage());
     }
 
-    public function testKeysCanNotBeNumericReturnsException(): void
+    public function testNotAllKeysAreStringsReturnsException(): void
     {
-        $exception = InvalidFrontMatter::keysCanNotBeNumeric();
+        $exception = InvalidFrontMatter::notAllKeysAreStrings();
 
-        self::assertSame('The keys of front matter data can not be numeric.', $exception->getMessage());
+        self::assertSame('The keys of front matter data need to be strings.', $exception->getMessage());
     }
 }

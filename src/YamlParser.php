@@ -59,7 +59,7 @@ final class YamlParser implements Parser
         });
 
         if ([] !== $keysThatAreNotStrings) {
-            throw Exception\InvalidFrontMatter::keysCanNotBeNumeric();
+            throw Exception\InvalidFrontMatter::notAllKeysAreStrings();
         }
 
         return Parsed::fromFrontMatterAndContent(
