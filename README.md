@@ -81,10 +81,10 @@ $parsed = $parser->parse($valueWithoutFrontMatter);
 
 :exclamation: The `YamlParser` will throw an [`Ergebnis\FrontMatter\Exception\InvalidFrontMatter`](src/Exception/InvalidFrontMatter.php) exception when
 
-- the front matter cannot be parsed because it is invalid YAML
+- the front matter is invalid YAML
 - the front matter data does not describe an associative array
 
-:bulb: When the value does not contain front matter or contains valid YAML front matter, the `YamlParser` returns an [`Ergebnis\FrontMatter\Parsed`](src/Parsed.php) value object. This object composes the parsed front matter and the content after the front matter.
+:bulb: The `YamlParser` returns an [`Ergebnis\FrontMatter\Parsed`](src/Parsed.php) value object on success, regardless of whether the value has front matter or not.
 
 ## Changelog
 
