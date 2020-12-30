@@ -28,18 +28,18 @@ final class YamlParser implements Parser
     {
         if (\preg_match(self::PATTERN, $value, $matches) !== 1) {
             return Parsed::fromFrontMatterAndContent(
-                Parsed\FrontMatter::fromArray([]),
-                Parsed\Content::fromString($value)
+                [],
+                $value
             );
         }
 
-        $content = Parsed\Content::fromString($matches['content']);
+        $content = $matches['content'];
 
         $rawfrontMatter = $matches['frontMatter'];
 
         if ('' === $rawfrontMatter) {
             return Parsed::fromFrontMatterAndContent(
-                Parsed\FrontMatter::fromArray([]),
+                [],
                 $content
             );
         }
@@ -50,7 +50,17 @@ final class YamlParser implements Parser
             throw Exception\InvalidFrontMatter::create();
         }
 
-        $frontMatter = Parsed\FrontMatter::fromArray((array) $data);
+        $frontMatter = (array) $data;
+
+        $keys = \array_keys($frontMatter);
+
+        $keysThatAreNotStrings = \array_filter($keys, static function ($key): bool {
+            return !\is_string($key);
+        });
+
+        if ([] !== $keysThatAreNotStrings) {
+            throw Exception\InvalidFrontMatter::keysCanNotBeNumeric();
+        }
 
         return Parsed::fromFrontMatterAndContent(
             $frontMatter,

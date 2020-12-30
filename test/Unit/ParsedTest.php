@@ -21,9 +21,6 @@ use PHPUnit\Framework;
  * @internal
  *
  * @covers \Ergebnis\FrontMatter\Parsed
- *
- * @uses \Ergebnis\FrontMatter\Parsed\Content
- * @uses \Ergebnis\FrontMatter\Parsed\FrontMatter
  */
 final class ParsedTest extends Framework\TestCase
 {
@@ -33,13 +30,13 @@ final class ParsedTest extends Framework\TestCase
     {
         $faker = self::faker();
 
-        $frontMatter = Parsed\FrontMatter::fromArray([
+        $frontMatter = [
             'foo' => $faker->words,
             'bar' => $faker->randomFloat(),
             'baz' => $faker->randomNumber(),
-        ]);
+        ];
 
-        $content = Parsed\Content::fromString($faker->realText());
+        $content = $faker->realText();
 
         $parsed = Parsed::fromFrontMatterAndContent(
             $frontMatter,
