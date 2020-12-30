@@ -19,13 +19,13 @@ final class Parsed
 
     private $content;
 
-    private function __construct(Parsed\FrontMatter $frontMatter, Parsed\Content $content)
+    private function __construct(array $frontMatter, string $content)
     {
         $this->frontMatter = $frontMatter;
         $this->content = $content;
     }
 
-    public static function fromFrontMatterAndContent(Parsed\FrontMatter $frontMatter, Parsed\Content $content): self
+    public static function fromFrontMatterAndContent(array $frontMatter, string $content): self
     {
         return new self(
             $frontMatter,
@@ -33,12 +33,12 @@ final class Parsed
         );
     }
 
-    public function frontMatter(): Parsed\FrontMatter
+    public function frontMatter(): array
     {
         return $this->frontMatter;
     }
 
-    public function content(): Parsed\Content
+    public function content(): string
     {
         return $this->content;
     }

@@ -1,12 +1,3 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Call to function is_string\\(\\) with string will always evaluate to true\\.$#"
-			count: 1
-			path: src/Parsed/FrontMatter.php
-
-		-
-			message: "#^Parameter \\#1 \\$value of static method Ergebnis\\\\FrontMatter\\\\Parsed\\\\FrontMatter\\:\\:fromArray\\(\\) expects array\\<string, mixed\\>, array\\<int, string\\> given\\.$#"
-			count: 1
-			path: test/Unit/Parsed/FrontMatterTest.php
+	ignoreErrors: []
 
