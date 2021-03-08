@@ -15,7 +15,7 @@
     "symfony/yaml": "^5.2.3"
   },
   "require-dev": {
-    "ergebnis/composer-normalize": "^2.13.2",
+    "ergebnis/composer-normalize": "^2.13.3",
     "ergebnis/license": "^1.1.0",
     "ergebnis/php-cs-fixer-config": "~2.13.0",
     "ergebnis/phpstan-rules": "~0.15.3",
