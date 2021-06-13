@@ -29,7 +29,7 @@ final class YamlParser implements Parser
         if (\preg_match(self::PATTERN, $value, $matches) !== 1) {
             return Parsed::fromFrontMatterAndContent(
                 [],
-                $value
+                $value,
             );
         }
 
@@ -40,7 +40,7 @@ final class YamlParser implements Parser
         if ('' === $rawfrontMatter) {
             return Parsed::fromFrontMatterAndContent(
                 [],
-                $content
+                $content,
             );
         }
 
@@ -64,7 +64,7 @@ final class YamlParser implements Parser
 
         return Parsed::fromFrontMatterAndContent(
             $frontMatter,
-            $content
+            $content,
         );
     }
 }

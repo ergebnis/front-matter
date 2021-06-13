@@ -29,7 +29,7 @@ final class Parsed
     {
         return new self(
             $frontMatter,
-            $content
+            $content,
         );
     }
 

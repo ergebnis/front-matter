@@ -40,7 +40,7 @@ final class ParsedTest extends Framework\TestCase
 
         $parsed = Parsed::fromFrontMatterAndContent(
             $frontMatter,
-            $content
+            $content,
         );
 
         self::assertSame($frontMatter, $parsed->frontMatter());
