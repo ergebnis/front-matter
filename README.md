@@ -1,6 +1,7 @@
 # front-matter
 
 [![Integrate](https://github.com/ergebnis/front-matter/workflows/Integrate/badge.svg)](https://github.com/ergebnis/front-matter/actions)
+[![Merge](https://github.com/ergebnis/front-matter/workflows/Merge/badge.svg)](https://github.com/ergebnis/front-matter/actions)
 [![Prune](https://github.com/ergebnis/front-matter/workflows/Prune/badge.svg)](https://github.com/ergebnis/front-matter/actions)
 [![Release](https://github.com/ergebnis/front-matter/workflows/Release/badge.svg)](https://github.com/ergebnis/front-matter/actions)
 [![Renew](https://github.com/ergebnis/front-matter/workflows/Renew/badge.svg)](https://github.com/ergebnis/front-matter/actions)
