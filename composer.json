@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "php": "^7.3 || ^8.0",
+    "php": "^7.4 || ^8.0",
     "symfony/yaml": "^5.2.5"
   },
   "require-dev": {
@@ -32,7 +32,7 @@
   },
   "config": {
     "platform": {
-      "php": "7.3.24"
+      "php": "7.4.25"
     },
     "preferred-install": "dist",
     "sort-packages": true
