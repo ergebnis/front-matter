@@ -15,8 +15,8 @@ namespace Ergebnis\FrontMatter;
 
 final class Parsed
 {
-    private $frontMatter;
-    private $content;
+    private array $frontMatter;
+    private string $content;
 
     private function __construct(array $frontMatter, string $content)
     {
