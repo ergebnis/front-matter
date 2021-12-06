@@ -1,6 +1,6 @@
 {
   "name": "ergebnis/front-matter",
-  "description": "Provides a GitHub repository template for a PHP library, using GitHub actions.",
+  "description": "Provides a front matter parser.",
   "license": "MIT",
   "type": "library",
   "authors": [
