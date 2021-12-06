@@ -1,15 +1,19 @@
 {
   "name": "ergebnis/front-matter",
-  "type": "library",
   "description": "Provides a GitHub repository template for a PHP library, using GitHub actions.",
-  "homepage": "https://github.com/ergebnis/front-matter",
   "license": "MIT",
+  "type": "library",
   "authors": [
     {
       "name": "Andreas Möller",
       "email": "am@localheinz.com"
     }
   ],
+  "homepage": "https://github.com/ergebnis/front-matter",
+  "support": {
+    "issues": "https://github.com/ergebnis/front-matter/issues",
+    "source": "https://github.com/ergebnis/front-matter"
+  },
   "require": {
     "php": "^7.4 || ^8.0",
     "symfony/yaml": "^5.4.0"
@@ -24,6 +28,16 @@
     "psalm/plugin-phpunit": "~0.16.1",
     "vimeo/psalm": "^4.14.0"
   },
+  "autoload": {
+    "psr-4": {
+      "Ergebnis\\FrontMatter\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ergebnis\\FrontMatter\\Test\\": "test/"
+    }
+  },
   "config": {
     "platform": {
       "php": "7.4.25"
@@ -36,19 +50,5 @@
       "indent-size": 2,
       "indent-style": "space"
     }
-  },
-  "autoload": {
-    "psr-4": {
-      "Ergebnis\\FrontMatter\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Ergebnis\\FrontMatter\\Test\\": "test/"
-    }
-  },
-  "support": {
-    "issues": "https://github.com/ergebnis/front-matter/issues",
-    "source": "https://github.com/ergebnis/front-matter"
   }
 }
