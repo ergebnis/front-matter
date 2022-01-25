@@ -24,7 +24,7 @@
     "ergebnis/php-cs-fixer-config": "~4.0.0",
     "ergebnis/test-util": "^1.5.0",
     "infection/infection": "~0.26.2",
-    "phpunit/phpunit": "^9.5.12",
+    "phpunit/phpunit": "^9.5.13",
     "psalm/plugin-phpunit": "~0.16.1",
     "vimeo/psalm": "^4.18.1"
   },
