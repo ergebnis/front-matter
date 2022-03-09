@@ -7,6 +7,8 @@ updates:
       include: "scope"
       prefix: "composer"
     directory: "/"
+    ignore:
+      - dependency-name: "symfony/yaml"
     labels:
       - "dependency"
     open-pull-requests-limit: 10
