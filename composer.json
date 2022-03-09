@@ -16,7 +16,7 @@
   },
   "require": {
     "php": "^7.4 || ^8.0",
-    "symfony/yaml": "^5.4.2"
+    "symfony/yaml": "^5.4.3"
   },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.24.0",
