@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Ergebnis\FrontMatter\Test\Unit;
 
 use Ergebnis\FrontMatter\Parsed;
-use Ergebnis\Test\Util;
+use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
 /**
@@ -24,7 +24,7 @@ use PHPUnit\Framework;
  */
 final class ParsedTest extends Framework\TestCase
 {
-    use Util\Helper;
+    use Test\Util\Helper;
 
     public function testFromFrontMatterAndContentReturnsParsed(): void
     {

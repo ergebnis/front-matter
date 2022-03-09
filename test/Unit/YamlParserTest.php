@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Ergebnis\FrontMatter\Test\Unit;
 
 use Ergebnis\FrontMatter\Exception;
+use Ergebnis\FrontMatter\Test;
 use Ergebnis\FrontMatter\YamlParser;
-use Ergebnis\Test\Util;
 use PHPUnit\Framework;
 
 /**
@@ -28,7 +28,7 @@ use PHPUnit\Framework;
  */
 final class YamlParserTest extends Framework\TestCase
 {
-    use Util\Helper;
+    use Test\Util\Helper;
 
     /**
      * @dataProvider \Ergebnis\Test\Util\DataProvider\StringProvider::arbitrary()
