@@ -31,7 +31,7 @@ final class YamlParserTest extends Framework\TestCase
     use Test\Util\Helper;
 
     /**
-     * @dataProvider \Ergebnis\Test\Util\DataProvider\StringProvider::arbitrary()
+     * @dataProvider \Ergebnis\DataProvider\StringProvider::arbitrary()
      */
     public function testHasFrontMatterReturnsFalseWhenValueDoesNotHaveFrontMatter(string $value): void
     {
