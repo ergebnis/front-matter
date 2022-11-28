@@ -35,9 +35,9 @@ final class YamlParser implements Parser
 
         $content = $matches['content'];
 
-        $rawfrontMatter = $matches['frontMatter'];
+        $rawFrontMatter = $matches['frontMatter'];
 
-        if ('' === $rawfrontMatter) {
+        if ('' === $rawFrontMatter) {
             return Parsed::fromFrontMatterAndContent(
                 [],
                 $content,
@@ -45,7 +45,7 @@ final class YamlParser implements Parser
         }
 
         try {
-            $data = Yaml\Yaml::parse($rawfrontMatter);
+            $data = Yaml\Yaml::parse($rawFrontMatter);
         } catch (Yaml\Exception\ParseException) {
             throw Exception\InvalidFrontMatter::create();
         }
