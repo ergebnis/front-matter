@@ -19,7 +19,7 @@ Provides a front matter parser.
 Run
 
 ```sh
-$ composer require ergebnis/front-matter
+composer require ergebnis/front-matter
 ```
 
 ## Usage
