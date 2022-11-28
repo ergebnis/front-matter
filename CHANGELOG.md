@@ -12,7 +12,7 @@ For a full diff see [`0.4.0...main`][0.4.0...main].
 
 ### Changed
 
-* Allowed installation with `symfony/yaml:^6.0.0` ([#181]), by [@localheinz]
+- Allowed installation with `symfony/yaml:^6.0.0` ([#181]), by [@localheinz]
 
 ## [`0.3.0`][0.3.0]
 
@@ -20,7 +20,7 @@ For a full diff see [`0.2.0...0.3.0`][0.2.0...0.3.0].
 
 ### Changed
 
-* Dropped support for PHP 7.3 ([#157]), by [@localheinz]
+- Dropped support for PHP 7.3 ([#157]), by [@localheinz]
 
 ## [`0.2.0`][0.2.0]
 
@@ -28,11 +28,11 @@ For a full diff see [`0.1.0...0.2.0`][0.1.0...0.2.0].
 
 ### Changed
 
-* Renamed `Exception\InvalidFrontMatter::keysCanNotBeNumeric()` to `Exception\InvalidFrontMatter::notAllKeysAreStrings()` ([#9]), by [@localheinz]
+- Renamed `Exception\InvalidFrontMatter::keysCanNotBeNumeric()` to `Exception\InvalidFrontMatter::notAllKeysAreStrings()` ([#9]), by [@localheinz]
 
 ### Removed
 
-* Removed `Parsed\FrontMatter` and `Parsed\Content` ([#8]), by [@localheinz]
+- Removed `Parsed\FrontMatter` and `Parsed\Content` ([#8]), by [@localheinz]
 
 ## [`0.1.0`][0.1.0]
 
@@ -40,7 +40,7 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 
 ### Added
 
-* Added `YamlParser` ([#2]), by [@localheinz]
+- Added `YamlParser` ([#2]), by [@localheinz]
 
 [0.1.0]: https://github.com/ergebnis/front-matter/releases/tag/0.1.0
 [0.2.0]: https://github.com/ergebnis/front-matter/releases/tag/0.2.0
