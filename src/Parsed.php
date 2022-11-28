@@ -15,15 +15,10 @@ namespace Ergebnis\FrontMatter;
 
 final class Parsed
 {
-    private array $frontMatter;
-    private string $content;
-
     private function __construct(
-        array $frontMatter,
-        string $content,
+        private array $frontMatter,
+        private string $content,
     ) {
-        $this->frontMatter = $frontMatter;
-        $this->content = $content;
     }
 
     public static function fromFrontMatterAndContent(
