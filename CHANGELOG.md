@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`0.4.0...main`][0.4.0...main].
 
+### Changed
+
+- Dropped support for PHP 7.4 ([#301]), by [@localheinz]
+
 ## [`0.4.0`][0.4.0]
 
 ### Changed
@@ -58,5 +62,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#9]: https://github.com/ergebnis/front-matter/pull/9
 [#157]: https://github.com/ergebnis/front-matter/pull/157
 [#181]: https://github.com/ergebnis/front-matter/pull/181
+[#301]: https://github.com/ergebnis/front-matter/pull/301
 
 [@localheinz]: https://github.com/localheinz
