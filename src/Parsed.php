@@ -18,14 +18,18 @@ final class Parsed
     private array $frontMatter;
     private string $content;
 
-    private function __construct(array $frontMatter, string $content)
-    {
+    private function __construct(
+        array $frontMatter,
+        string $content,
+    ) {
         $this->frontMatter = $frontMatter;
         $this->content = $content;
     }
 
-    public static function fromFrontMatterAndContent(array $frontMatter, string $content): self
-    {
+    public static function fromFrontMatterAndContent(
+        array $frontMatter,
+        string $content,
+    ): self {
         return new self(
             $frontMatter,
             $content,
