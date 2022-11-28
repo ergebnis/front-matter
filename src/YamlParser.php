@@ -46,7 +46,7 @@ final class YamlParser implements Parser
 
         try {
             $data = Yaml\Yaml::parse($rawfrontMatter);
-        } catch (Yaml\Exception\ParseException $parseException) {
+        } catch (Yaml\Exception\ParseException) {
             throw Exception\InvalidFrontMatter::create();
         }
 
