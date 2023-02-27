@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.30.0@d0bc6e25d89f649e4f36a534f330f8bb4643dd69">
+<files psalm-version="5.7.7@e028ba46ba0d7f9a78bc3201c251e137383e145f">
   <file src="src/YamlParser.php">
-    <MixedAssignment occurrences="1">
+    <MixedAssignment>
       <code>$data</code>
     </MixedAssignment>
   </file>
