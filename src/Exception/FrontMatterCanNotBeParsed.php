@@ -11,15 +11,12 @@ declare(strict_types=1);
  * @see https://github.com/ergebnis/front-matter
  */
 
-namespace Ergebnis\FrontMatter;
+namespace Ergebnis\FrontMatter\Exception;
 
-interface Parser
+final class FrontMatterCanNotBeParsed extends \InvalidArgumentException
 {
-    public function hasFrontMatter(string $value): bool;
-
-    /**
-     * @throws Exception\FrontMatterIsNotAnObject
-     * @throws Exception\FrontMatterCanNotBeParsed
-     */
-    public function parse(string $value): Parsed;
+    public static function create(): self
+    {
+        return new self('Front matter can not be parsed.');
+    }
 }

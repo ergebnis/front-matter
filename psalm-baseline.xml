@@ -7,11 +7,8 @@
   </file>
   <file src="src/YamlParser.php">
     <MixedArgumentTypeCoercion>
-      <code>$frontMatter</code>
-    </MixedArgumentTypeCoercion>
-    <MixedAssignment>
       <code>$data</code>
-    </MixedAssignment>
+    </MixedArgumentTypeCoercion>
   </file>
   <file src="test/Unit/FrontMatterTest.php">
     <MixedArgument>
