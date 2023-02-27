@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter;
 
+use Ergebnis\FrontMatter\Exception\FrontMatterHasInvalidKeys;
 use Symfony\Component\Yaml;
 
 final class YamlParser implements Parser
@@ -28,7 +29,7 @@ final class YamlParser implements Parser
     {
         if (\preg_match(self::PATTERN, $value, $matches) !== 1) {
             return Parsed::fromFrontMatterAndContent(
-                [],
+                FrontMatter::fromArray([]),
                 Content::fromString($value),
             );
         }
@@ -39,7 +40,7 @@ final class YamlParser implements Parser
 
         if ('' === $rawFrontMatter) {
             return Parsed::fromFrontMatterAndContent(
-                [],
+                FrontMatter::fromArray([]),
                 $content,
             );
         }
@@ -52,13 +53,9 @@ final class YamlParser implements Parser
 
         $frontMatter = (array) $data;
 
-        $keys = \array_keys($frontMatter);
-
-        $keysThatAreNotStrings = \array_filter($keys, static function ($key): bool {
-            return !\is_string($key);
-        });
-
-        if ([] !== $keysThatAreNotStrings) {
+        try {
+            $frontMatter = FrontMatter::fromArray($frontMatter);
+        } catch (FrontMatterHasInvalidKeys) {
             throw Exception\InvalidFrontMatter::notAllKeysAreStrings();
         }
 

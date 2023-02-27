@@ -16,13 +16,13 @@ namespace Ergebnis\FrontMatter;
 final class Parsed
 {
     private function __construct(
-        private array $frontMatter,
+        private FrontMatter $frontMatter,
         private Content $content,
     ) {
     }
 
     public static function fromFrontMatterAndContent(
-        array $frontMatter,
+        FrontMatter $frontMatter,
         Content $content,
     ): self {
         return new self(
@@ -31,7 +31,7 @@ final class Parsed
         );
     }
 
-    public function frontMatter(): array
+    public function frontMatter(): FrontMatter
     {
         return $this->frontMatter;
     }

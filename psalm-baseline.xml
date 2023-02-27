@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="5.7.7@e028ba46ba0d7f9a78bc3201c251e137383e145f">
+  <file src="src/FrontMatter.php">
+    <DocblockTypeContradiction>
+      <code>return !\is_string($key);</code>
+    </DocblockTypeContradiction>
+  </file>
   <file src="src/YamlParser.php">
+    <MixedArgumentTypeCoercion>
+      <code>$frontMatter</code>
+    </MixedArgumentTypeCoercion>
     <MixedAssignment>
       <code>$data</code>
+    </MixedAssignment>
+  </file>
+  <file src="test/Unit/FrontMatterTest.php">
+    <MixedArgument>
+      <code>$key</code>
+      <code>$key</code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion>
+      <code>$value</code>
+    </MixedArgumentTypeCoercion>
+    <MixedArrayOffset>
+      <code>$value[$key]</code>
+    </MixedArrayOffset>
+    <MixedAssignment>
+      <code>$key</code>
+      <code>$key</code>
     </MixedAssignment>
   </file>
 </files>

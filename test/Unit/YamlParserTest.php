@@ -15,6 +15,7 @@ namespace Ergebnis\FrontMatter\Test\Unit;
 
 use Ergebnis\FrontMatter\Content;
 use Ergebnis\FrontMatter\Exception;
+use Ergebnis\FrontMatter\FrontMatter;
 use Ergebnis\FrontMatter\Test;
 use Ergebnis\FrontMatter\YamlParser;
 use PHPUnit\Framework;
@@ -25,7 +26,9 @@ use PHPUnit\Framework;
  * @covers \Ergebnis\FrontMatter\YamlParser
  *
  * @uses \Ergebnis\FrontMatter\Content
+ * @uses \Ergebnis\FrontMatter\Exception\FrontMatterHasInvalidKeys
  * @uses \Ergebnis\FrontMatter\Exception\InvalidFrontMatter
+ * @uses \Ergebnis\FrontMatter\FrontMatter
  * @uses \Ergebnis\FrontMatter\Parsed
  */
 final class YamlParserTest extends Framework\TestCase
@@ -322,7 +325,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString($value), $parsed->content());
     }
 
@@ -337,7 +340,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString($value), $parsed->content());
     }
 
@@ -354,7 +357,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString($value), $parsed->content());
     }
 
@@ -372,7 +375,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString($value), $parsed->content());
     }
 
@@ -387,7 +390,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString($value), $parsed->content());
     }
 
@@ -402,7 +405,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString(''), $parsed->content());
     }
 
@@ -418,7 +421,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString(''), $parsed->content());
     }
 
@@ -448,7 +451,7 @@ TXT
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals($content, $parsed->content());
     }
 
@@ -465,7 +468,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString(''), $parsed->content());
     }
 
@@ -483,7 +486,7 @@ TXT;
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals(Content::fromString(''), $parsed->content());
     }
 
@@ -513,7 +516,7 @@ TXT);
 
         $parsed = $parser->parse($value);
 
-        self::assertEquals([], $parsed->frontMatter());
+        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
         self::assertEquals($content, $parsed->content());
     }
 
@@ -619,13 +622,13 @@ baz:
 ---
 TXT;
 
-        $frontMatter = [
+        $frontMatter = FrontMatter::fromArray([
             'foo' => 'bar',
             'baz' => [
                 'qux',
                 'quz',
             ],
-        ];
+        ]);
 
         $parser = new YamlParser();
 
@@ -648,13 +651,13 @@ baz:
 
 TXT;
 
-        $frontMatter = [
+        $frontMatter = FrontMatter::fromArray([
             'foo' => 'bar',
             'baz' => [
                 'qux',
                 'quz',
             ],
-        ];
+        ]);
 
         $content = Content::fromString(<<<'TXT'
 
@@ -685,13 +688,13 @@ baz:
 
 TXT;
 
-        $frontMatter = [
+        $frontMatter = FrontMatter::fromArray([
             'foo' => 'bar',
             'baz' => [
                 'qux',
                 'quz',
             ],
-        ];
+        ]);
 
         $content = Content::fromString(<<<'TXT'
 
@@ -722,13 +725,13 @@ baz:
 ---
 TXT;
 
-        $frontMatter = [
+        $frontMatter = FrontMatter::fromArray([
             'foo' => 'bar',
             'baz' => [
                 'qux',
                 'quz',
             ],
-        ];
+        ]);
 
         $content = Content::fromString('');
 
@@ -755,13 +758,13 @@ baz:
 
 TXT;
 
-        $frontMatter = [
+        $frontMatter = FrontMatter::fromArray([
             'foo' => 'bar',
             'baz' => [
                 'qux',
                 'quz',
             ],
-        ];
+        ]);
 
         $content = Content::fromString(<<<'TXT'
 
@@ -794,13 +797,13 @@ baz:
 
 TXT;
 
-        $frontMatter = [
+        $frontMatter = FrontMatter::fromArray([
             'foo' => 'bar',
             'baz' => [
                 'qux',
                 'quz',
             ],
-        ];
+        ]);
 
         $content = Content::fromString(<<<'TXT'
 
