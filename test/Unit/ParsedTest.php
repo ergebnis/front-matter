@@ -31,7 +31,7 @@ final class ParsedTest extends Framework\TestCase
         $faker = self::faker();
 
         $frontMatter = [
-            'foo' => $faker->words,
+            'foo' => $faker->words(),
             'bar' => $faker->randomFloat(),
             'baz' => $faker->randomNumber(),
         ];
