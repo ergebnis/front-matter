@@ -13,15 +13,10 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Exception;
 
-final class InvalidFrontMatter extends \InvalidArgumentException
+final class FrontMatterIsNotAnObject extends \InvalidArgumentException
 {
     public static function create(): self
     {
-        return new self('Front matter is invalid.');
-    }
-
-    public static function notAllKeysAreStrings(): self
-    {
-        return new self('The keys of front matter data need to be strings.');
+        return new self('Front matter is not an object.');
     }
 }

@@ -12,6 +12,7 @@ For a full diff see [`1.0.0...main`][1.0.0...main].
 
 - Extracted `Content` as a value object ([#341]), by [@localheinz]
 - Extracted `FrontMatter` as a value object ([#342]), by [@localheinz]
+- Split `InvalidFrontMatter` exception into `FrontMatterCanNotBeParsed` and `FrontMatterIsNotAnObject` exceptions ([#344]), by [@localheinz]
 
 ## [`1.0.0`][1.0.0]
 
@@ -76,5 +77,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#301]: https://github.com/ergebnis/front-matter/pull/301
 [#341]: https://github.com/ergebnis/front-matter/pull/341
 [#342]: https://github.com/ergebnis/front-matter/pull/342
+[#344]: https://github.com/ergebnis/front-matter/pull/344
 
 [@localheinz]: https://github.com/localheinz

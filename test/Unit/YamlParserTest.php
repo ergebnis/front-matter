@@ -26,8 +26,9 @@ use PHPUnit\Framework;
  * @covers \Ergebnis\FrontMatter\YamlParser
  *
  * @uses \Ergebnis\FrontMatter\Content
+ * @uses \Ergebnis\FrontMatter\Exception\FrontMatterCanNotBeParsed
  * @uses \Ergebnis\FrontMatter\Exception\FrontMatterHasInvalidKeys
- * @uses \Ergebnis\FrontMatter\Exception\InvalidFrontMatter
+ * @uses \Ergebnis\FrontMatter\Exception\FrontMatterIsNotAnObject
  * @uses \Ergebnis\FrontMatter\FrontMatter
  * @uses \Ergebnis\FrontMatter\Parsed
  */
@@ -520,7 +521,7 @@ TXT);
         self::assertEquals($content, $parsed->content());
     }
 
-    public function testParseThrowsInvalidFrontMatterWhenFrontMatterCanNotBeParsed(): void
+    public function testParseThrowsFrontMatterCanNotBeParsedWhenFrontMatterCanNotBeParsed(): void
     {
         $value = <<<'TXT'
 ---
@@ -531,12 +532,12 @@ TXT;
 
         $parser = new YamlParser();
 
-        $this->expectException(Exception\InvalidFrontMatter::class);
+        $this->expectException(Exception\FrontMatterCanNotBeParsed::class);
 
         $parser->parse($value);
     }
 
-    public function testParseThrowsInvalidFrontMatterWhenFrontMatterIsFalse(): void
+    public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsFalse(): void
     {
         $value = <<<'TXT'
 ---
@@ -546,12 +547,12 @@ TXT;
 
         $parser = new YamlParser();
 
-        $this->expectException(Exception\InvalidFrontMatter::class);
+        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($value);
     }
 
-    public function testParseThrowsInvalidFrontMatterWhenFrontMatterIsTrue(): void
+    public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsTrue(): void
     {
         $value = <<<'TXT'
 ---
@@ -561,12 +562,12 @@ TXT;
 
         $parser = new YamlParser();
 
-        $this->expectException(Exception\InvalidFrontMatter::class);
+        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($value);
     }
 
-    public function testParseThrowsInvalidFrontMatterWhenFrontMatterIsString(): void
+    public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsString(): void
     {
         $value = <<<'TXT'
 ---
@@ -576,12 +577,12 @@ TXT;
 
         $parser = new YamlParser();
 
-        $this->expectException(Exception\InvalidFrontMatter::class);
+        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($value);
     }
 
-    public function testParseThrowsInvalidFrontMatterWhenFrontMatterIsInt(): void
+    public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsInt(): void
     {
         $value = <<<'TXT'
 ---
@@ -591,7 +592,7 @@ TXT;
 
         $parser = new YamlParser();
 
-        $this->expectException(Exception\InvalidFrontMatter::class);
+        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($value);
     }
@@ -606,7 +607,23 @@ TXT;
 
         $parser = new YamlParser();
 
-        $this->expectException(Exception\InvalidFrontMatter::class);
+        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
+
+        $parser->parse($value);
+    }
+
+    public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsArray(): void
+    {
+        $value = <<<'TXT'
+---
+- "foo"
+- "bar"
+---
+TXT;
+
+        $parser = new YamlParser();
+
+        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($value);
     }

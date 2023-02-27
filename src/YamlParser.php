@@ -48,15 +48,17 @@ final class YamlParser implements Parser
         try {
             $data = Yaml\Yaml::parse($rawFrontMatter);
         } catch (Yaml\Exception\ParseException) {
-            throw Exception\InvalidFrontMatter::create();
+            throw Exception\FrontMatterCanNotBeParsed::create();
         }
 
-        $frontMatter = (array) $data;
+        if (!\is_array($data)) {
+            throw Exception\FrontMatterIsNotAnObject::create();
+        }
 
         try {
-            $frontMatter = FrontMatter::fromArray($frontMatter);
+            $frontMatter = FrontMatter::fromArray($data);
         } catch (FrontMatterHasInvalidKeys) {
-            throw Exception\InvalidFrontMatter::notAllKeysAreStrings();
+            throw Exception\FrontMatterIsNotAnObject::create();
         }
 
         return Parsed::fromFrontMatterAndContent(
