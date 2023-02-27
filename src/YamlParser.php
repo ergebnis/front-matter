@@ -29,11 +29,11 @@ final class YamlParser implements Parser
         if (\preg_match(self::PATTERN, $value, $matches) !== 1) {
             return Parsed::fromFrontMatterAndContent(
                 [],
-                $value,
+                Content::fromString($value),
             );
         }
 
-        $content = $matches['content'];
+        $content = Content::fromString($matches['content']);
 
         $rawFrontMatter = $matches['frontMatter'];
 

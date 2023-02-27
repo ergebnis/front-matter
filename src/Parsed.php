@@ -17,13 +17,13 @@ final class Parsed
 {
     private function __construct(
         private array $frontMatter,
-        private string $content,
+        private Content $content,
     ) {
     }
 
     public static function fromFrontMatterAndContent(
         array $frontMatter,
-        string $content,
+        Content $content,
     ): self {
         return new self(
             $frontMatter,
@@ -36,7 +36,7 @@ final class Parsed
         return $this->frontMatter;
     }
 
-    public function content(): string
+    public function content(): Content
     {
         return $this->content;
     }

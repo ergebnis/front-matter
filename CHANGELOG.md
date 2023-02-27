@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`1.0.0...main`][1.0.0...main].
 
+### Changed
+
+- Extracted `Content` as a value object ([#341]), by [@localheinz]
+
 ## [`1.0.0`][1.0.0]
 
 For a full diff see [`0.4.0...1.0.0`][0.4.0...1.0.0].
@@ -69,5 +73,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#157]: https://github.com/ergebnis/front-matter/pull/157
 [#181]: https://github.com/ergebnis/front-matter/pull/181
 [#301]: https://github.com/ergebnis/front-matter/pull/301
+[#341]: https://github.com/ergebnis/front-matter/pull/341
 
 [@localheinz]: https://github.com/localheinz
