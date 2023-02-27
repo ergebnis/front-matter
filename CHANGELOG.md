@@ -11,6 +11,7 @@ For a full diff see [`1.0.0...main`][1.0.0...main].
 ### Changed
 
 - Extracted `Content` as a value object ([#341]), by [@localheinz]
+- Extracted `FrontMatter` as a value object ([#342]), by [@localheinz]
 
 ## [`1.0.0`][1.0.0]
 
@@ -74,5 +75,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#181]: https://github.com/ergebnis/front-matter/pull/181
 [#301]: https://github.com/ergebnis/front-matter/pull/301
 [#341]: https://github.com/ergebnis/front-matter/pull/341
+[#342]: https://github.com/ergebnis/front-matter/pull/342
 
 [@localheinz]: https://github.com/localheinz
