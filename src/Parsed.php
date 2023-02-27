@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter;
 
+/**
+ * @psalm-immutable
+ */
 final class Parsed
 {
     private function __construct(

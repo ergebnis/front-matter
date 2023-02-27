@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter;
 
+/**
+ * @psalm-immutable
+ */
 final class Content
 {
     private function __construct(private string $value)
