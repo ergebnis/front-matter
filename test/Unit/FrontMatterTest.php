@@ -94,6 +94,77 @@ final class FrontMatterTest extends Framework\TestCase
         self::assertTrue($frontMatter->has($key));
     }
 
+    /**
+     * @dataProvider provideFrontMatterWhereValueIsMissingWhenKeyUsesDotNotation
+     */
+    public function testHasReturnsFalseWhenFrontMatterDoesNotHaveValueWhenKeyUsesDotNotation(array $value): void
+    {
+        $frontMatter = FrontMatter::fromArray($value);
+
+        self::assertFalse($frontMatter->has('head.meta.author'));
+    }
+
+    /**
+     * @return \Generator<string, array{0: array}>
+     */
+    public static function provideFrontMatterWhereValueIsMissingWhenKeyUsesDotNotation(): \Generator
+    {
+        $faker = self::faker();
+
+        $values = [
+            'head-not-present' => [
+                'other' => $faker->word(),
+            ],
+            'head-present-but-value-is-string' => [
+                'head' => $faker->word(),
+            ],
+            'head-present-but-value-is-array-where-keys-are-integers' => [
+                'head' => $faker->words(),
+            ],
+            'head.meta-present-but-value-is-string' => [
+                'head' => [
+                    'meta' => $faker->word(),
+                ],
+            ],
+            'head.meta-present-but-value-is-array-where-keys-are-integers' => [
+                'head' => [
+                    'meta' => $faker->words(),
+                ],
+            ],
+            'head.meta-present-as-key' => [
+                'head.meta' => [
+                    'author' => $faker->word(),
+                ],
+            ],
+            'head.meta.author-present-as-key' => [
+                'head.meta.author' => $faker->word(),
+            ],
+        ];
+
+        foreach ($values as $key => $value) {
+            yield $key => [
+                $value,
+            ];
+        }
+    }
+
+    public function testHasReturnsTrueWhenFrontMatterHasFullyExplodedPartsAndKeyUsesDotNotation(): void
+    {
+        $faker = self::faker();
+
+        $value = [
+            'head' => [
+                'meta' => [
+                    'author' => $faker->name(),
+                ],
+            ],
+        ];
+
+        $frontMatter = FrontMatter::fromArray($value);
+
+        self::assertTrue($frontMatter->has('head.meta.author'));
+    }
+
     public function testGetThrowsFrontMatterDoesNotHaveKeyExceptionWhenFrontMatterIsEmpty(): void
     {
         $key = self::faker()->word();
@@ -137,5 +208,34 @@ final class FrontMatterTest extends Framework\TestCase
         $frontMatter = FrontMatter::fromArray($value);
 
         self::assertSame($value[$key], $frontMatter->get($key));
+    }
+
+    /**
+     * @dataProvider provideFrontMatterWhereValueIsMissingWhenKeyUsesDotNotation
+     */
+    public function testGetThrowsFrontMatterDoesNotHaveValueExceptionWhenFrontMatterDoesNotHaveValueAndKeyUsesDotNotation(array $value): void
+    {
+        $frontMatter = FrontMatter::fromArray($value);
+
+        $this->expectException(Exception\FrontMatterDoesNotHaveKey::class);
+
+        $frontMatter->get('head.meta.author');
+    }
+
+    public function testGetReturnsValueWhenFrontMatterHasFullyExplodedPartsAndKeyUsesDotNotation(): void
+    {
+        $author = self::faker()->name();
+
+        $value = [
+            'head' => [
+                'meta' => [
+                    'author' => $author,
+                ],
+            ],
+        ];
+
+        $frontMatter = FrontMatter::fromArray($value);
+
+        self::assertSame($author, $frontMatter->get('head.meta.author'));
     }
 }

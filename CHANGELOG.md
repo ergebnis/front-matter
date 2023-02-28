@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`2.0.0...main`][2.0.0...main].
 
+### Changed
+
+- Allowed using dot notation to access values in `FrontMatter` ([#346]), by [@localheinz]
+
 ## [`2.0.0`][2.0.0]
 
 For a full diff see [`1.0.0...2.0.0`][1.0.0...2.0.0].
@@ -84,5 +88,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#341]: https://github.com/ergebnis/front-matter/pull/341
 [#342]: https://github.com/ergebnis/front-matter/pull/342
 [#344]: https://github.com/ergebnis/front-matter/pull/344
+[#346]: https://github.com/ergebnis/front-matter/pull/346
 
 [@localheinz]: https://github.com/localheinz
