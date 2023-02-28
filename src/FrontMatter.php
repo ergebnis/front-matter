@@ -45,7 +45,40 @@ final class FrontMatter
 
     public function has(string $key): bool
     {
-        return \array_key_exists($key, $this->value);
+        if (!\str_contains($key, '.')) {
+            return \array_key_exists(
+                $key,
+                $this->value,
+            );
+        }
+
+        /** @var array<int, string> $parts */
+        $parts = \explode(
+            '.',
+            $key,
+        );
+
+        $count = \count($parts);
+        $value = $this->value;
+
+        for ($i = 0; $i < $count; ++$i) {
+            $part = $parts[$i];
+
+            if (!\array_key_exists($part, $value)) {
+                return false;
+            }
+
+            $value = $value[$part];
+
+            if (
+                $count - 1 > $i
+                && !\is_array($value)
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -53,11 +86,41 @@ final class FrontMatter
      */
     public function get(string $key): mixed
     {
-        if (!\array_key_exists($key, $this->value)) {
-            throw Exception\FrontMatterDoesNotHaveKey::named($key);
+        if (!\str_contains($key, '.')) {
+            if (!\array_key_exists($key, $this->value)) {
+                throw Exception\FrontMatterDoesNotHaveKey::named($key);
+            }
+
+            return $this->value[$key];
         }
 
-        return $this->value[$key];
+        /** @var array<int, string> $parts */
+        $parts = \explode(
+            '.',
+            $key,
+        );
+
+        $count = \count($parts);
+        $value = $this->value;
+
+        for ($i = 0; $i < $count; ++$i) {
+            $part = $parts[$i];
+
+            if (!\array_key_exists($part, $value)) {
+                throw Exception\FrontMatterDoesNotHaveKey::named($key);
+            }
+
+            $value = $value[$part];
+
+            if (
+                $count - 1 > $i
+                && !\is_array($value)
+            ) {
+                throw Exception\FrontMatterDoesNotHaveKey::named($key);
+            }
+        }
+
+        return $value;
     }
 
     /**

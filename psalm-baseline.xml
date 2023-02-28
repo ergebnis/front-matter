@@ -4,6 +4,14 @@
     <DocblockTypeContradiction>
       <code>return !\is_string($key);</code>
     </DocblockTypeContradiction>
+    <MixedArgument>
+      <code>$value</code>
+      <code>$value</code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code>$value</code>
+      <code>$value</code>
+    </MixedAssignment>
   </file>
   <file src="src/YamlParser.php">
     <MixedArgumentTypeCoercion>
@@ -16,6 +24,8 @@
       <code>$key</code>
     </MixedArgument>
     <MixedArgumentTypeCoercion>
+      <code>$value</code>
+      <code>$value</code>
       <code>$value</code>
     </MixedArgumentTypeCoercion>
     <MixedArrayOffset>
