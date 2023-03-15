@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b96e833a97680a052538e6bed73404d",
+    "content-hash": "6058fda9ca3a962e271c633d30b66de0",
     "packages": [
         {
             "name": "symfony/deprecation-contracts",
@@ -1592,21 +1592,21 @@
         },
         {
             "name": "ergebnis/php-cs-fixer-config",
-            "version": "5.3.2",
+            "version": "5.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ergebnis/php-cs-fixer-config.git",
-                "reference": "04f50768ae098fc9b8f94d775ec7553f12c9acc6"
+                "reference": "48002df6005e6de66ea2ff22e390e11f7353f9aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ergebnis/php-cs-fixer-config/zipball/04f50768ae098fc9b8f94d775ec7553f12c9acc6",
-                "reference": "04f50768ae098fc9b8f94d775ec7553f12c9acc6",
+                "url": "https://api.github.com/repos/ergebnis/php-cs-fixer-config/zipball/48002df6005e6de66ea2ff22e390e11f7353f9aa",
+                "reference": "48002df6005e6de66ea2ff22e390e11f7353f9aa",
                 "shasum": ""
             },
             "require": {
                 "ext-filter": "*",
-                "friendsofphp/php-cs-fixer": "~3.15.0",
+                "friendsofphp/php-cs-fixer": "~3.15.1",
                 "php": "~8.0.0 || ~8.1.0 || ~8.2.0"
             },
             "require-dev": {
@@ -1649,7 +1649,7 @@
                 "issues": "https://github.com/ergebnis/php-cs-fixer-config/issues",
                 "source": "https://github.com/ergebnis/php-cs-fixer-config"
             },
-            "time": "2023-03-13T08:25:26+00:00"
+            "time": "2023-03-14T10:59:08+00:00"
         },
         {
             "name": "fakerphp/faker",
