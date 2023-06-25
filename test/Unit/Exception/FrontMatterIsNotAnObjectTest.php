@@ -16,11 +16,7 @@ namespace Ergebnis\FrontMatter\Test\Unit\Exception;
 use Ergebnis\FrontMatter\Exception;
 use PHPUnit\Framework;
 
-/**
- * @internal
- *
- * @covers \Ergebnis\FrontMatter\Exception\FrontMatterIsNotAnObject
- */
+#[Framework\Attributes\CoversClass(Exception\FrontMatterIsNotAnObject::class)]
 final class FrontMatterIsNotAnObjectTest extends Framework\TestCase
 {
     public function testCreateReturnsException(): void

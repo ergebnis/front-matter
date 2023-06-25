@@ -16,11 +16,7 @@ namespace Ergebnis\FrontMatter\Test\Unit\Exception;
 use Ergebnis\FrontMatter\Exception;
 use PHPUnit\Framework;
 
-/**
- * @internal
- *
- * @covers \Ergebnis\FrontMatter\Exception\FrontMatterHasInvalidKeys
- */
+#[Framework\Attributes\CoversClass(Exception\FrontMatterHasInvalidKeys::class)]
 final class FrontMatterHasInvalidKeysTest extends Framework\TestCase
 {
     public function testCreateReturnsException(): void

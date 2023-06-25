@@ -19,14 +19,9 @@ use Ergebnis\FrontMatter\Parsed;
 use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
-/**
- * @internal
- *
- * @covers \Ergebnis\FrontMatter\Parsed
- *
- * @uses \Ergebnis\FrontMatter\Content
- * @uses \Ergebnis\FrontMatter\FrontMatter
- */
+#[Framework\Attributes\CoversClass(Parsed::class)]
+#[Framework\Attributes\UsesClass(Content::class)]
+#[Framework\Attributes\UsesClass(FrontMatter::class)]
 final class ParsedTest extends Framework\TestCase
 {
     use Test\Util\Helper;

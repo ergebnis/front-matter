@@ -17,11 +17,7 @@ use Ergebnis\FrontMatter\Exception;
 use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
-/**
- * @internal
- *
- * @covers \Ergebnis\FrontMatter\Exception\FrontMatterDoesNotHaveKey
- */
+#[Framework\Attributes\CoversClass(Exception\FrontMatterDoesNotHaveKey::class)]
 final class FrontMatterDoesNotHaveKeyTest extends Framework\TestCase
 {
     use Test\Util\Helper;

@@ -18,14 +18,9 @@ use Ergebnis\FrontMatter\FrontMatter;
 use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
-/**
- * @internal
- *
- * @covers \Ergebnis\FrontMatter\FrontMatter
- *
- * @uses \Ergebnis\FrontMatter\Exception\FrontMatterDoesNotHaveKey
- * @uses \Ergebnis\FrontMatter\Exception\FrontMatterHasInvalidKeys
- */
+#[Framework\Attributes\CoversClass(FrontMatter::class)]
+#[Framework\Attributes\UsesClass(Exception\FrontMatterDoesNotHaveKey::class)]
+#[Framework\Attributes\UsesClass(Exception\FrontMatterHasInvalidKeys::class)]
 final class FrontMatterTest extends Framework\TestCase
 {
     use Test\Util\Helper;
@@ -94,9 +89,7 @@ final class FrontMatterTest extends Framework\TestCase
         self::assertTrue($frontMatter->has($key));
     }
 
-    /**
-     * @dataProvider provideFrontMatterWhereValueIsMissingWhenKeyUsesDotNotation
-     */
+    #[Framework\Attributes\DataProvider('provideFrontMatterWhereValueIsMissingWhenKeyUsesDotNotation')]
     public function testHasReturnsFalseWhenFrontMatterDoesNotHaveValueWhenKeyUsesDotNotation(array $value): void
     {
         $frontMatter = FrontMatter::fromArray($value);
@@ -210,9 +203,7 @@ final class FrontMatterTest extends Framework\TestCase
         self::assertSame($value[$key], $frontMatter->get($key));
     }
 
-    /**
-     * @dataProvider provideFrontMatterWhereValueIsMissingWhenKeyUsesDotNotation
-     */
+    #[Framework\Attributes\DataProvider('provideFrontMatterWhereValueIsMissingWhenKeyUsesDotNotation')]
     public function testGetThrowsFrontMatterDoesNotHaveValueExceptionWhenFrontMatterDoesNotHaveValueAndKeyUsesDotNotation(array $value): void
     {
         $frontMatter = FrontMatter::fromArray($value);
