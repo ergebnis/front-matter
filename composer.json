@@ -15,7 +15,7 @@
     "source": "https://github.com/ergebnis/front-matter"
   },
   "require": {
-    "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
+    "php": "~8.1.0 || ~8.2.0",
     "symfony/yaml": "^5.0.0 || ^6.0.0"
   },
   "require-dev": {
@@ -47,7 +47,7 @@
       "infection/extension-installer": true
     },
     "platform": {
-      "php": "8.0.25"
+      "php": "8.1.20"
     },
     "preferred-install": "dist",
     "sort-packages": true
