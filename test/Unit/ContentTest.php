@@ -13,19 +13,14 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit;
 
+use Ergebnis\DataProvider;
 use Ergebnis\FrontMatter\Content;
 use PHPUnit\Framework;
 
-/**
- * @internal
- *
- * @covers \Ergebnis\FrontMatter\Content
- */
+#[Framework\Attributes\CoversClass(Content::class)]
 final class ContentTest extends Framework\TestCase
 {
-    /**
-     * @dataProvider \Ergebnis\DataProvider\StringProvider::arbitrary()
-     */
+    #[Framework\Attributes\DataProviderExternal(DataProvider\StringProvider::class, 'arbitrary')]
     public function testFromStringReturnsContent(string $value): void
     {
         $content = Content::fromString($value);

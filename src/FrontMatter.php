@@ -21,7 +21,7 @@ final class FrontMatter
     /**
      * @param array<string, mixed> $value
      */
-    private function __construct(private array $value)
+    private function __construct(private readonly array $value)
     {
     }
 

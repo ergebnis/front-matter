@@ -19,8 +19,8 @@ namespace Ergebnis\FrontMatter;
 final class Parsed
 {
     private function __construct(
-        private FrontMatter $frontMatter,
-        private Content $content,
+        private readonly FrontMatter $frontMatter,
+        private readonly Content $content,
     ) {
     }
 

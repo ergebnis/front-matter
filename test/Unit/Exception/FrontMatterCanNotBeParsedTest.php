@@ -16,11 +16,7 @@ namespace Ergebnis\FrontMatter\Test\Unit\Exception;
 use Ergebnis\FrontMatter\Exception;
 use PHPUnit\Framework;
 
-/**
- * @internal
- *
- * @covers \Ergebnis\FrontMatter\Exception\FrontMatterCanNotBeParsed
- */
+#[Framework\Attributes\CoversClass(Exception\FrontMatterCanNotBeParsed::class)]
 final class FrontMatterCanNotBeParsedTest extends Framework\TestCase
 {
     public function testCreateReturnsException(): void

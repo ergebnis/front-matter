@@ -13,32 +13,27 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit;
 
+use Ergebnis\DataProvider;
 use Ergebnis\FrontMatter\Content;
 use Ergebnis\FrontMatter\Exception;
 use Ergebnis\FrontMatter\FrontMatter;
+use Ergebnis\FrontMatter\Parsed;
 use Ergebnis\FrontMatter\Test;
 use Ergebnis\FrontMatter\YamlParser;
 use PHPUnit\Framework;
 
-/**
- * @internal
- *
- * @covers \Ergebnis\FrontMatter\YamlParser
- *
- * @uses \Ergebnis\FrontMatter\Content
- * @uses \Ergebnis\FrontMatter\Exception\FrontMatterCanNotBeParsed
- * @uses \Ergebnis\FrontMatter\Exception\FrontMatterHasInvalidKeys
- * @uses \Ergebnis\FrontMatter\Exception\FrontMatterIsNotAnObject
- * @uses \Ergebnis\FrontMatter\FrontMatter
- * @uses \Ergebnis\FrontMatter\Parsed
- */
+#[Framework\Attributes\CoversClass(YamlParser::class)]
+#[Framework\Attributes\UsesClass(Content::class)]
+#[Framework\Attributes\UsesClass(Exception\FrontMatterCanNotBeParsed::class)]
+#[Framework\Attributes\UsesClass(Exception\FrontMatterHasInvalidKeys::class)]
+#[Framework\Attributes\UsesClass(Exception\FrontMatterIsNotAnObject::class)]
+#[Framework\Attributes\UsesClass(FrontMatter::class)]
+#[Framework\Attributes\UsesClass(Parsed::class)]
 final class YamlParserTest extends Framework\TestCase
 {
     use Test\Util\Helper;
 
-    /**
-     * @dataProvider \Ergebnis\DataProvider\StringProvider::arbitrary()
-     */
+    #[Framework\Attributes\DataProviderExternal(DataProvider\StringProvider::class, 'arbitrary')]
     public function testHasFrontMatterReturnsFalseWhenValueDoesNotHaveFrontMatter(string $value): void
     {
         $parser = new YamlParser();
