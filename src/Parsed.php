@@ -24,7 +24,7 @@ final class Parsed
     ) {
     }
 
-    public static function fromFrontMatterAndContent(
+    public static function create(
         FrontMatter $frontMatter,
         Content $content,
     ): self {
