@@ -353,8 +353,12 @@ TXT
 
         $parsed = $parser->parse($content);
 
-        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(BodyMatter::fromString($content->toString()), $parsed->bodyMatter());
+        $expected = Parsed::create(
+            FrontMatter::fromArray([]),
+            BodyMatter::fromString($content->toString()),
+        );
+
+        self::assertEquals($expected, $parsed);
     }
 
     public function testParseReturnsParsedWhenContentIsFrontMatterDelimiterWithTrailingWhitespace(): void
@@ -370,8 +374,12 @@ TXT
 
         $parsed = $parser->parse($content);
 
-        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(BodyMatter::fromString($content->toString()), $parsed->bodyMatter());
+        $expected = Parsed::create(
+            FrontMatter::fromArray([]),
+            BodyMatter::fromString($content->toString()),
+        );
+
+        self::assertEquals($expected, $parsed);
     }
 
     public function testParseReturnsParsedWhenContentIsFrontMatterDelimiterWithBodyMatter(): void
@@ -390,8 +398,12 @@ TXT
 
         $parsed = $parser->parse($content);
 
-        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(BodyMatter::fromString($content->toString()), $parsed->bodyMatter());
+        $expected = Parsed::create(
+            FrontMatter::fromArray([]),
+            BodyMatter::fromString($content->toString()),
+        );
+
+        self::assertEquals($expected, $parsed);
     }
 
     public function testParseReturnsParsedWhenContentIsFrontMatterDelimiterWithTrailingWhitespaceAndBodyMatter(): void
@@ -410,8 +422,12 @@ TXT
 
         $parsed = $parser->parse($content);
 
-        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(BodyMatter::fromString($content->toString()), $parsed->bodyMatter());
+        $expected = Parsed::create(
+            FrontMatter::fromArray([]),
+            BodyMatter::fromString($content->toString()),
+        );
+
+        self::assertEquals($expected, $parsed);
     }
 
     public function testParseReturnsParsedWhenContentIsAlmostEmptyFrontMatter(): void
@@ -427,8 +443,12 @@ TXT
 
         $parsed = $parser->parse($content);
 
-        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(BodyMatter::fromString($content->toString()), $parsed->bodyMatter());
+        $expected = Parsed::create(
+            FrontMatter::fromArray([]),
+            BodyMatter::fromString($content->toString()),
+        );
+
+        self::assertEquals($expected, $parsed);
     }
 
     public function testParseReturnsParsedWhenContentIsEmptyFrontMatter(): void
@@ -444,8 +464,12 @@ TXT
 
         $parsed = $parser->parse($content);
 
-        self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(BodyMatter::fromString(''), $parsed->bodyMatter());
+        $expected = Parsed::create(
+            FrontMatter::fromArray([]),
+            BodyMatter::fromString(''),
+        );
+
+        self::assertEquals($expected, $parsed);
     }
 
     public function testParseReturnsParsedWhenContentHasEmptyFrontMatterAndBlankBodyMatter(): void
