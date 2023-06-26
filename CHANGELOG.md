@@ -14,6 +14,7 @@ For a full diff see [`2.1.0...main`][2.1.0...main].
 - Renamed `Parsed::fromFrontMatterAndContent()` to `Parsed::create()` ([#397]), by [@localheinz]
 - Renamed `Content` to `BodyMatter` and `Parsed::content()` to `Parsed::bodyMatter()` ([#398]), by [@localheinz]
 - Extracted `Content` as a value object ([#399]), by [@localheinz]
+- Renamed `Parsed` to `ParsedContent` ([#400]), by [@localheinz]
 
 ## [`2.1.0`][2.1.0]
 
@@ -106,5 +107,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#397]: https://github.com/ergebnis/front-matter/pull/397
 [#398]: https://github.com/ergebnis/front-matter/pull/398
 [#399]: https://github.com/ergebnis/front-matter/pull/399
+[#400]: https://github.com/ergebnis/front-matter/pull/400
 
 [@localheinz]: https://github.com/localheinz

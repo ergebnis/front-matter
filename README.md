@@ -71,8 +71,8 @@ $parser = new FrontMatter\YamlParser();
 
 $contentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how are you today?');
 
-/** @var FrontMatter\Parsed $parsed */
-$parsed = $parser->parse($contentWithoutFrontMatter);
+/** @var FrontMatter\ParsedContent $parsedContent */
+$parsedContent = $parser->parse($contentWithoutFrontMatter);
 
 $contentWithFrontMatter = FrontMatter\Content::fromString(
     <<<TXT
@@ -84,13 +84,13 @@ page:
 TXT
 );
 
-/** @var FrontMatter\Parsed $parsed */
-$parsed = $parser->parse($contentWithoutFrontMatter);
+/** @var FrontMatter\ParsedContent $parsedContent */
+$parsedContent = $parser->parse($contentWithoutFrontMatter);
 ```
 
 :exclamation: The `YamlParser` will throw an [`Ergebnis\FrontMatter\Exception\FrontMatterCanNotBeParsed`](src/Exception/FrontMatterCanNotBeParsed.php) exception when the front matter is invalid YAML and an [`Ergebnis\FrontMatter\Exception\FrontMatterIsNotAnObject`](src/Exception/FrontMatterIsNotAnObject.php) exception when the front matter does not describe an object.
 
-:bulb: The `YamlParser` returns an [`Ergebnis\FrontMatter\Parsed`](src/Parsed.php) value object on success, regardless of whether the value has front matter or not.
+:bulb: The `YamlParser` returns an [`Ergebnis\FrontMatter\Parsed`](src/ParsedContent.php) value object on success, regardless of whether the value has front matter or not.
 
 ## Changelog
 
