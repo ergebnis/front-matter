@@ -11,6 +11,7 @@ For a full diff see [`2.1.0...main`][2.1.0...main].
 ### Changed
 
 - Dropped support for PHP 8.0 ([#393]), by [@localheinz]
+- Renamed `Parsed::fromFrontMatterAndContent()` to `Parsed::create()` ([#397]), by [@localheinz]
 
 ## [`2.1.0`][2.1.0]
 
@@ -100,5 +101,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#344]: https://github.com/ergebnis/front-matter/pull/344
 [#346]: https://github.com/ergebnis/front-matter/pull/346
 [#393]: https://github.com/ergebnis/front-matter/pull/393
+[#397]: https://github.com/ergebnis/front-matter/pull/397
 
 [@localheinz]: https://github.com/localheinz

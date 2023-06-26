@@ -26,7 +26,7 @@ final class ParsedTest extends Framework\TestCase
 {
     use Test\Util\Helper;
 
-    public function testFromFrontMatterAndContentReturnsParsed(): void
+    public function testCreateReturnsParsed(): void
     {
         $faker = self::faker();
 
@@ -38,7 +38,7 @@ final class ParsedTest extends Framework\TestCase
 
         $content = Content::fromString($faker->realText());
 
-        $parsed = Parsed::fromFrontMatterAndContent(
+        $parsed = Parsed::create(
             $frontMatter,
             $content,
         );

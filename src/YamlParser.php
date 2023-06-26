@@ -28,7 +28,7 @@ final class YamlParser implements Parser
     public function parse(string $value): Parsed
     {
         if (\preg_match(self::PATTERN, $value, $matches) !== 1) {
-            return Parsed::fromFrontMatterAndContent(
+            return Parsed::create(
                 FrontMatter::fromArray([]),
                 Content::fromString($value),
             );
@@ -39,7 +39,7 @@ final class YamlParser implements Parser
         $rawFrontMatter = $matches['frontMatter'];
 
         if ('' === $rawFrontMatter) {
-            return Parsed::fromFrontMatterAndContent(
+            return Parsed::create(
                 FrontMatter::fromArray([]),
                 $content,
             );
@@ -61,7 +61,7 @@ final class YamlParser implements Parser
             throw Exception\FrontMatterIsNotAnObject::create();
         }
 
-        return Parsed::fromFrontMatterAndContent(
+        return Parsed::create(
             $frontMatter,
             $content,
         );
