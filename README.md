@@ -41,19 +41,21 @@ use Ergebnis\FrontMatter;
 
 $parser = new FrontMatter\YamlParser();
 
-$valueWithoutFrontMatter = 'Hello, how are you today?';
+$contentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how are you today?');
 
-$parser->hasFrontMatter($valueWithoutFrontMatter); // false
+$parser->hasFrontMatter($contentWithoutFrontMatter); // false
 
-$valueWithFrontMatter = <<<TXT
+$contentWithFrontMatter = FrontMatter\Content::fromString(
+    <<<TXT
 ---
 page:
   title: "Hello"
   description: "Good to see you, how can I help you?"
 ---
-TXT;
+TXT
+);
 
-$parser->hasFrontMatter($valueWithFrontMatter); // true
+$parser->hasFrontMatter($contentWithFrontMatter); // true
 ```
 
 With the `YamlParser`, you can parse a `string`, regardless of whether it has YAML front matter or not.
@@ -67,21 +69,23 @@ use Ergebnis\FrontMatter;
 
 $parser = new FrontMatter\YamlParser();
 
-$valueWithoutFrontMatter = 'Hello, how are you today?';
+$contentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how are you today?');
 
 /** @var FrontMatter\Parsed $parsed */
-$parsed = $parser->parse($valueWithoutFrontMatter);
+$parsed = $parser->parse($contentWithoutFrontMatter);
 
-$valueWithFrontMatter = <<<TXT
+$contentWithFrontMatter = FrontMatter\Content::fromString(
+    <<<TXT
 ---
 page:
   title: "Hello"
   description: "Good to see you, how can I help you?"
 ---
-TXT;
+TXT
+);
 
 /** @var FrontMatter\Parsed $parsed */
-$parsed = $parser->parse($valueWithoutFrontMatter);
+$parsed = $parser->parse($contentWithoutFrontMatter);
 ```
 
 :exclamation: The `YamlParser` will throw an [`Ergebnis\FrontMatter\Exception\FrontMatterCanNotBeParsed`](src/Exception/FrontMatterCanNotBeParsed.php) exception when the front matter is invalid YAML and an [`Ergebnis\FrontMatter\Exception\FrontMatterIsNotAnObject`](src/Exception/FrontMatterIsNotAnObject.php) exception when the front matter does not describe an object.

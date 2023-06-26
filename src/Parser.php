@@ -15,11 +15,11 @@ namespace Ergebnis\FrontMatter;
 
 interface Parser
 {
-    public function hasFrontMatter(string $value): bool;
+    public function hasFrontMatter(Content $content): bool;
 
     /**
      * @throws Exception\FrontMatterIsNotAnObject
      * @throws Exception\FrontMatterCanNotBeParsed
      */
-    public function parse(string $value): Parsed;
+    public function parse(Content $content): Parsed;
 }
