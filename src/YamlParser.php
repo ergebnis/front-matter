@@ -27,7 +27,7 @@ final class YamlParser implements Parser
 
     public function parse(Content $content): ParsedContent
     {
-        if (\preg_match(self::PATTERN, $content->toString(), $matches) !== 1) {
+        if (1 !== \preg_match(self::PATTERN, $content->toString(), $matches)) {
             return ParsedContent::create(
                 FrontMatter::fromArray([]),
                 BodyMatter::fromString($content->toString()),
