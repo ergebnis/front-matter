@@ -20,17 +20,17 @@ final class Parsed
 {
     private function __construct(
         private readonly FrontMatter $frontMatter,
-        private readonly Content $content,
+        private readonly BodyMatter $bodyMatter,
     ) {
     }
 
     public static function create(
         FrontMatter $frontMatter,
-        Content $content,
+        BodyMatter $bodyMatter,
     ): self {
         return new self(
             $frontMatter,
-            $content,
+            $bodyMatter,
         );
     }
 
@@ -39,8 +39,8 @@ final class Parsed
         return $this->frontMatter;
     }
 
-    public function content(): Content
+    public function bodyMatter(): BodyMatter
     {
-        return $this->content;
+        return $this->bodyMatter;
     }
 }

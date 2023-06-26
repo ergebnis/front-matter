@@ -14,17 +14,17 @@ declare(strict_types=1);
 namespace Ergebnis\FrontMatter\Test\Unit;
 
 use Ergebnis\DataProvider;
-use Ergebnis\FrontMatter\Content;
+use Ergebnis\FrontMatter\BodyMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Content::class)]
-final class ContentTest extends Framework\TestCase
+#[Framework\Attributes\CoversClass(BodyMatter::class)]
+final class BodyMatterTest extends Framework\TestCase
 {
     #[Framework\Attributes\DataProviderExternal(DataProvider\StringProvider::class, 'arbitrary')]
-    public function testFromStringReturnsContent(string $value): void
+    public function testFromStringReturnsBodyMatter(string $value): void
     {
-        $content = Content::fromString($value);
+        $bodyMatter = BodyMatter::fromString($value);
 
-        self::assertSame($value, $content->toString());
+        self::assertSame($value, $bodyMatter->toString());
     }
 }

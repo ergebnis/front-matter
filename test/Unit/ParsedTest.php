@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit;
 
-use Ergebnis\FrontMatter\Content;
+use Ergebnis\FrontMatter\BodyMatter;
 use Ergebnis\FrontMatter\FrontMatter;
 use Ergebnis\FrontMatter\Parsed;
 use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
 #[Framework\Attributes\CoversClass(Parsed::class)]
-#[Framework\Attributes\UsesClass(Content::class)]
+#[Framework\Attributes\UsesClass(BodyMatter::class)]
 #[Framework\Attributes\UsesClass(FrontMatter::class)]
 final class ParsedTest extends Framework\TestCase
 {
@@ -36,14 +36,14 @@ final class ParsedTest extends Framework\TestCase
             'baz' => $faker->randomNumber(),
         ]);
 
-        $content = Content::fromString($faker->realText());
+        $bodyMatter = BodyMatter::fromString($faker->realText());
 
         $parsed = Parsed::create(
             $frontMatter,
-            $content,
+            $bodyMatter,
         );
 
         self::assertSame($frontMatter, $parsed->frontMatter());
-        self::assertSame($content, $parsed->content());
+        self::assertSame($bodyMatter, $parsed->bodyMatter());
     }
 }
