@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Ergebnis\FrontMatter\Test\Unit;
 
 use Ergebnis\DataProvider;
-use Ergebnis\FrontMatter\Content;
+use Ergebnis\FrontMatter\BodyMatter;
 use Ergebnis\FrontMatter\Exception;
 use Ergebnis\FrontMatter\FrontMatter;
 use Ergebnis\FrontMatter\Parsed;
@@ -23,7 +23,7 @@ use Ergebnis\FrontMatter\YamlParser;
 use PHPUnit\Framework;
 
 #[Framework\Attributes\CoversClass(YamlParser::class)]
-#[Framework\Attributes\UsesClass(Content::class)]
+#[Framework\Attributes\UsesClass(BodyMatter::class)]
 #[Framework\Attributes\UsesClass(Exception\FrontMatterCanNotBeParsed::class)]
 #[Framework\Attributes\UsesClass(Exception\FrontMatterHasInvalidKeys::class)]
 #[Framework\Attributes\UsesClass(Exception\FrontMatterIsNotAnObject::class)]
@@ -64,7 +64,7 @@ TXT;
         self::assertFalse($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsFalseWhenValueIsFrontMatterDelimiterWithContent(): void
+    public function testHasFrontMatterReturnsFalseWhenValueIsFrontMatterDelimiterWithBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -78,7 +78,7 @@ TXT;
         self::assertFalse($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsFalseWhenValueIsFrontMatterDelimiterWithTrailingWhitespaceAndContent(): void
+    public function testHasFrontMatterReturnsFalseWhenValueIsFrontMatterDelimiterWithTrailingWhitespaceAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -117,7 +117,7 @@ TXT;
         self::assertTrue($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsTrueWhenValueHasEmptyFrontMatterAndBlankContent(): void
+    public function testHasFrontMatterReturnsTrueWhenValueHasEmptyFrontMatterAndBlankBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -130,7 +130,7 @@ TXT;
         self::assertTrue($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsTrueWhenValueHasEmptyFrontMatterAndContent(): void
+    public function testHasFrontMatterReturnsTrueWhenValueHasEmptyFrontMatterAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -161,7 +161,7 @@ TXT;
         self::assertTrue($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsTrueWhenValueHasEmptyFrontMatterWithWhitespaceAndBlankContent(): void
+    public function testHasFrontMatterReturnsTrueWhenValueHasEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -176,7 +176,7 @@ TXT;
         self::assertTrue($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsTrueWhenValueHasEmptyFrontMatterWithWhitespaceAndContent(): void
+    public function testHasFrontMatterReturnsTrueWhenValueHasEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -211,7 +211,7 @@ TXT;
         self::assertTrue($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsTrueWhenValueHasNonEmptyFrontMatterAndBlankContent(): void
+    public function testHasFrontMatterReturnsTrueWhenValueHasNonEmptyFrontMatterAndBlankBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -229,7 +229,7 @@ TXT;
         self::assertTrue($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsTrueWhenValueHasNonEmptyFrontMatterAndContent(): void
+    public function testHasFrontMatterReturnsTrueWhenValueHasNonEmptyFrontMatterAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -268,7 +268,7 @@ TXT;
         self::assertTrue($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsTrueWhenValueHasNonEmptyFrontMatterWithWhitespaceAndBlankContent(): void
+    public function testHasFrontMatterReturnsTrueWhenValueHasNonEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -288,7 +288,7 @@ TXT;
         self::assertTrue($parser->hasFrontMatter($value));
     }
 
-    public function testHasFrontMatterReturnsTrueWhenValueHasNonEmptyFrontMatterWithWhitespaceAndContent(): void
+    public function testHasFrontMatterReturnsTrueWhenValueHasNonEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -322,7 +322,7 @@ TXT;
         $parsed = $parser->parse($value);
 
         self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(Content::fromString($value), $parsed->content());
+        self::assertEquals(BodyMatter::fromString($value), $parsed->bodyMatter());
     }
 
     public function testParseReturnsParsedWhenValueIsFrontMatterDelimiterWithTrailingWhitespace(): void
@@ -337,10 +337,10 @@ TXT;
         $parsed = $parser->parse($value);
 
         self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(Content::fromString($value), $parsed->content());
+        self::assertEquals(BodyMatter::fromString($value), $parsed->bodyMatter());
     }
 
-    public function testParseReturnsParsedWhenValueIsFrontMatterDelimiterWithContent(): void
+    public function testParseReturnsParsedWhenValueIsFrontMatterDelimiterWithBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -354,10 +354,10 @@ TXT;
         $parsed = $parser->parse($value);
 
         self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(Content::fromString($value), $parsed->content());
+        self::assertEquals(BodyMatter::fromString($value), $parsed->bodyMatter());
     }
 
-    public function testParseReturnsParsedWhenValueIsFrontMatterDelimiterWithTrailingWhitespaceAndContent(): void
+    public function testParseReturnsParsedWhenValueIsFrontMatterDelimiterWithTrailingWhitespaceAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -372,7 +372,7 @@ TXT;
         $parsed = $parser->parse($value);
 
         self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(Content::fromString($value), $parsed->content());
+        self::assertEquals(BodyMatter::fromString($value), $parsed->bodyMatter());
     }
 
     public function testParseReturnsParsedWhenValueIsAlmostEmptyFrontMatter(): void
@@ -387,7 +387,7 @@ TXT;
         $parsed = $parser->parse($value);
 
         self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(Content::fromString($value), $parsed->content());
+        self::assertEquals(BodyMatter::fromString($value), $parsed->bodyMatter());
     }
 
     public function testParseReturnsParsedWhenValueIsEmptyFrontMatter(): void
@@ -402,10 +402,10 @@ TXT;
         $parsed = $parser->parse($value);
 
         self::assertEquals(FrontMatter::fromArray([]), $parsed->frontMatter());
-        self::assertEquals(Content::fromString(''), $parsed->content());
+        self::assertEquals(BodyMatter::fromString(''), $parsed->bodyMatter());
     }
 
-    public function testParseReturnsParsedWhenValueHasEmptyFrontMatterAndBlankContent(): void
+    public function testParseReturnsParsedWhenValueHasEmptyFrontMatterAndBlankBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -419,13 +419,13 @@ TXT;
 
         $expected = Parsed::create(
             FrontMatter::fromArray([]),
-            Content::fromString(''),
+            BodyMatter::fromString(''),
         );
 
         self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedWhenValueHasEmptyFrontMatterAndContent(): void
+    public function testParseReturnsParsedWhenValueHasEmptyFrontMatterAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -443,7 +443,7 @@ TXT;
 
         $expected = Parsed::create(
             FrontMatter::fromArray([]),
-            Content::fromString(
+            BodyMatter::fromString(
                 <<<'TXT'
 
 <h1>
@@ -472,13 +472,13 @@ TXT;
 
         $expected = Parsed::create(
             FrontMatter::fromArray([]),
-            Content::fromString(''),
+            BodyMatter::fromString(''),
         );
 
         self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedWhenValueHasEmptyFrontMatterWithWhitespaceAndBlankContent(): void
+    public function testParseReturnsParsedWhenValueHasEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -494,13 +494,13 @@ TXT;
 
         $expected = Parsed::create(
             FrontMatter::fromArray([]),
-            Content::fromString(''),
+            BodyMatter::fromString(''),
         );
 
         self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedWhenValueHasEmptyFrontMatterWithWhitespaceAndContent(): void
+    public function testParseReturnsParsedWhenValueHasEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -520,7 +520,7 @@ TXT;
 
         $expected = Parsed::create(
             FrontMatter::fromArray([]),
-            Content::fromString(<<<'TXT'
+            BodyMatter::fromString(<<<'TXT'
 
 <h1>
     Hello
@@ -663,10 +663,10 @@ TXT;
         $parsed = $parser->parse($value);
 
         self::assertEquals($frontMatter, $parsed->frontMatter());
-        self::assertEquals(Content::fromString(''), $parsed->content());
+        self::assertEquals(BodyMatter::fromString(''), $parsed->bodyMatter());
     }
 
-    public function testParseReturnsParsedWhenValueHasNonEmptyFrontMatterAndBlankContent(): void
+    public function testParseReturnsParsedWhenValueHasNonEmptyFrontMatterAndBlankBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -691,7 +691,7 @@ TXT;
                     'quz',
                 ],
             ]),
-            Content::fromString(<<<'TXT'
+            BodyMatter::fromString(<<<'TXT'
 
 
 TXT),
@@ -700,7 +700,7 @@ TXT),
         self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedWhenValueHasNonEmptyFrontMatterAndContent(): void
+    public function testParseReturnsParsedWhenValueHasNonEmptyFrontMatterAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -728,7 +728,7 @@ TXT;
                     'quz',
                 ],
             ]),
-            Content::fromString(<<<'TXT'
+            BodyMatter::fromString(<<<'TXT'
 
 <h1>
     Hello
@@ -765,13 +765,13 @@ TXT;
                     'quz',
                 ],
             ]),
-            Content::fromString(''),
+            BodyMatter::fromString(''),
         );
 
         self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedWhenValueHasNonEmptyFrontMatterWithWhitespaceAndBlankContent(): void
+    public function testParseReturnsParsedWhenValueHasNonEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -798,7 +798,7 @@ TXT;
                     'quz',
                 ],
             ]),
-            Content::fromString(<<<'TXT'
+            BodyMatter::fromString(<<<'TXT'
 
 
 TXT),
@@ -807,7 +807,7 @@ TXT),
         self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedWhenValueHasNonEmptyFrontMatterWithWhitespaceAndContent(): void
+    public function testParseReturnsParsedWhenValueHasNonEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
         $value = <<<'TXT'
 ---
@@ -837,7 +837,7 @@ TXT;
                     'quz',
                 ],
             ]),
-            Content::fromString(<<<'TXT'
+            BodyMatter::fromString(<<<'TXT'
 
 <h1>
     Hello

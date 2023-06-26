@@ -18,7 +18,7 @@ use Symfony\Component\Yaml;
 
 final class YamlParser implements Parser
 {
-    private const PATTERN = "{^(?:---)[\r\n|\n]*(?P<frontMatter>.*?)[\r\n|\n]+(?:---)[\r\n|\n]{0,1}(?P<content>.*)$}s";
+    private const PATTERN = "{^(?:---)[\r\n|\n]*(?P<frontMatter>.*?)[\r\n|\n]+(?:---)[\r\n|\n]{0,1}(?P<bodyMatter>.*)$}s";
 
     public function hasFrontMatter(string $value): bool
     {
@@ -30,18 +30,18 @@ final class YamlParser implements Parser
         if (\preg_match(self::PATTERN, $value, $matches) !== 1) {
             return Parsed::create(
                 FrontMatter::fromArray([]),
-                Content::fromString($value),
+                BodyMatter::fromString($value),
             );
         }
 
-        $content = Content::fromString($matches['content']);
+        $bodyMatter = BodyMatter::fromString($matches['bodyMatter']);
 
         $rawFrontMatter = $matches['frontMatter'];
 
         if ('' === $rawFrontMatter) {
             return Parsed::create(
                 FrontMatter::fromArray([]),
-                $content,
+                $bodyMatter,
             );
         }
 
@@ -63,7 +63,7 @@ final class YamlParser implements Parser
 
         return Parsed::create(
             $frontMatter,
-            $content,
+            $bodyMatter,
         );
     }
 }

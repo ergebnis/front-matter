@@ -16,7 +16,7 @@ namespace Ergebnis\FrontMatter;
 /**
  * @psalm-immutable
  */
-final class Content
+final class BodyMatter
 {
     private function __construct(private readonly string $value)
     {
