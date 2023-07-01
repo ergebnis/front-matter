@@ -386,7 +386,6 @@ TXT
     {
         $unparsedContent = UnparsedContent::fromString(
             <<<'TXT'
-            <<<'TXT'
 ---
 <h1>
     Hello
