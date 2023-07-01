@@ -327,7 +327,9 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString($unparsedContent->toString()),
+            BodyMatter::fromString(<<<'TXT'
+---
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -346,7 +348,10 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString($unparsedContent->toString()),
+            BodyMatter::fromString(<<<'TXT'
+---
+
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -367,7 +372,12 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString($unparsedContent->toString()),
+            BodyMatter::fromString(<<<'TXT'
+---
+<h1>
+    Hello
+</h1>
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -389,7 +399,13 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString($unparsedContent->toString()),
+            BodyMatter::fromString(<<<'TXT'
+---
+
+<h1>
+    Hello
+</h1>
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -408,7 +424,10 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString($unparsedContent->toString()),
+            BodyMatter::fromString(<<<'TXT'
+----
+--
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -427,7 +446,9 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString(''),
+            BodyMatter::fromString(<<<'TXT'
+
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -447,7 +468,9 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString(''),
+            BodyMatter::fromString(<<<'TXT'
+
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -498,7 +521,9 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString(''),
+            BodyMatter::fromString(<<<'TXT'
+
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -520,7 +545,9 @@ TXT);
 
         $expected = ParsedContent::create(
             FrontMatter::fromArray([]),
-            BodyMatter::fromString(''),
+            BodyMatter::fromString(<<<'TXT'
+
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
@@ -676,20 +703,24 @@ baz:
 ---
 TXT);
 
-        $frontMatter = FrontMatter::fromArray([
-            'foo' => 'bar',
-            'baz' => [
-                'qux',
-                'quz',
-            ],
-        ]);
-
         $parser = new YamlParser();
 
         $parsedContent = $parser->parse($unparsedContent);
 
-        self::assertEquals($frontMatter, $parsedContent->frontMatter());
-        self::assertEquals(BodyMatter::fromString(''), $parsedContent->bodyMatter());
+        $expected = ParsedContent::create(
+            FrontMatter::fromArray([
+                'foo' => 'bar',
+                'baz' => [
+                    'qux',
+                    'quz',
+                ],
+            ]),
+            BodyMatter::fromString(<<<'TXT'
+
+TXT),
+        );
+
+        self::assertEquals($expected, $parsedContent);
     }
 
     public function testParseReturnsParsedContentWhenUnparsedContentHasNonEmptyFrontMatterAndBlankBodyMatter(): void
@@ -791,7 +822,9 @@ TXT);
                     'quz',
                 ],
             ]),
-            BodyMatter::fromString(''),
+            BodyMatter::fromString(<<<'TXT'
+
+TXT),
         );
 
         self::assertEquals($expected, $parsedContent);
