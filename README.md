@@ -41,11 +41,11 @@ use Ergebnis\FrontMatter;
 
 $parser = new FrontMatter\YamlParser();
 
-$contentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how are you today?');
+$unparsedContentWithoutFrontMatter = FrontMatter\UnparsedContent::fromString('Hello, how are you today?');
 
-$parser->hasFrontMatter($contentWithoutFrontMatter); // false
+$parser->hasFrontMatter($unparsedContentWithoutFrontMatter); // false
 
-$contentWithFrontMatter = FrontMatter\Content::fromString(
+$unparsedContentWithFrontMatter = FrontMatter\UnparsedContent::fromString(
     <<<TXT
 ---
 page:
@@ -55,7 +55,7 @@ page:
 TXT
 );
 
-$parser->hasFrontMatter($contentWithFrontMatter); // true
+$parser->hasFrontMatter($unparsedContentWithFrontMatter); // true
 ```
 
 With the `YamlParser`, you can parse a `string`, regardless of whether it has YAML front matter or not.
@@ -69,12 +69,12 @@ use Ergebnis\FrontMatter;
 
 $parser = new FrontMatter\YamlParser();
 
-$contentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how are you today?');
+$unparsedContentWithoutFrontMatter = FrontMatter\UnparsedContent::fromString('Hello, how are you today?');
 
-/** @var FrontMatter\ParsedContent $parsedContent */
-$parsedContent = $parser->parse($contentWithoutFrontMatter);
+/** @var FrontMatter\ParsedContent $parsedContentWithoutFrontMatter */
+$parsedContentWithoutFrontMatter = $parser->parse($unparsedContentWithoutFrontMatter);
 
-$contentWithFrontMatter = FrontMatter\Content::fromString(
+$unparsedContentWithFrontMatter = FrontMatter\UnparsedContent::fromString(
     <<<TXT
 ---
 page:
@@ -84,8 +84,8 @@ page:
 TXT
 );
 
-/** @var FrontMatter\ParsedContent $parsedContent */
-$parsedContent = $parser->parse($contentWithoutFrontMatter);
+/** @var FrontMatter\ParsedContent $parsedContentWithFrontMatter */
+$parsedContentWithFrontMatter = $parser->parse($unparsedContentWithoutFrontMatter);
 ```
 
 :exclamation: The `YamlParser` will throw an [`Ergebnis\FrontMatter\Exception\FrontMatterCanNotBeParsed`](src/Exception/FrontMatterCanNotBeParsed.php) exception when the front matter is invalid YAML and an [`Ergebnis\FrontMatter\Exception\FrontMatterIsNotAnObject`](src/Exception/FrontMatterIsNotAnObject.php) exception when the front matter does not describe an object.
