@@ -12,17 +12,17 @@ declare(strict_types=1);
  */
 
 use Ergebnis\DataProvider;
-use Ergebnis\FrontMatter\Content;
+use Ergebnis\FrontMatter\UnparsedContent;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Content::class)]
-final class ContentTest extends Framework\TestCase
+#[Framework\Attributes\CoversClass(UnparsedContent::class)]
+final class UnparsedContentTest extends Framework\TestCase
 {
     #[Framework\Attributes\DataProviderExternal(DataProvider\StringProvider::class, 'arbitrary')]
-    public function testFromStringReturnsContent(string $value): void
+    public function testFromStringReturnsUnparsedContent(string $value): void
     {
-        $content = Content::fromString($value);
+        $unparsedContent = UnparsedContent::fromString($value);
 
-        self::assertSame($value, $content->toString());
+        self::assertSame($value, $unparsedContent->toString());
     }
 }
