@@ -21,5 +21,5 @@ interface Parser
      * @throws Exception\FrontMatterIsNotAnObject
      * @throws Exception\FrontMatterCanNotBeParsed
      */
-    public function parse(UnparsedContent $content): ParsedContent;
+    public function parse(UnparsedContent $unparsedContent): ParsedContent;
 }

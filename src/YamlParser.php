@@ -25,12 +25,12 @@ final class YamlParser implements Parser
         return 1 === \preg_match(self::PATTERN, $content->toString());
     }
 
-    public function parse(UnparsedContent $content): ParsedContent
+    public function parse(UnparsedContent $unparsedContent): ParsedContent
     {
-        if (1 !== \preg_match(self::PATTERN, $content->toString(), $matches)) {
+        if (1 !== \preg_match(self::PATTERN, $unparsedContent->toString(), $matches)) {
             return ParsedContent::create(
                 FrontMatter::fromArray([]),
-                BodyMatter::fromString($content->toString()),
+                BodyMatter::fromString($unparsedContent->toString()),
             );
         }
 
