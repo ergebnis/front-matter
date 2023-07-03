@@ -25,6 +25,11 @@ final class FrontMatter
     {
     }
 
+    public static function empty(): self
+    {
+        return new self([]);
+    }
+
     /**
      * @param array<string, mixed> $value
      *

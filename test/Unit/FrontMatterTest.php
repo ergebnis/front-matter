@@ -25,6 +25,13 @@ final class FrontMatterTest extends Framework\TestCase
 {
     use Test\Util\Helper;
 
+    public function testEmptyReturnsFrontMatter(): void
+    {
+        $frontMatter = FrontMatter::empty();
+
+        self::assertSame([], $frontMatter->toArray());
+    }
+
     public function testFromArrayRejectsArrayWhereKeysAreNumeric(): void
     {
         $value = self::faker()->words();
