@@ -22,7 +22,7 @@ final class YamlParser implements Parser
 
     public function hasFrontMatter(UnparsedContent $content): bool
     {
-        return \preg_match(self::PATTERN, $content->toString()) === 1;
+        return 1 === \preg_match(self::PATTERN, $content->toString());
     }
 
     public function parse(UnparsedContent $content): ParsedContent
