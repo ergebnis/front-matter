@@ -87,13 +87,13 @@ final class Data
     }
 
     /**
-     * @throws Exception\FrontMatterDoesNotHaveKey
+     * @throws Exception\DataDoesNotHaveKey
      */
     public function get(string $key): mixed
     {
         if (!\str_contains($key, '.')) {
             if (!\array_key_exists($key, $this->value)) {
-                throw Exception\FrontMatterDoesNotHaveKey::named($key);
+                throw Exception\DataDoesNotHaveKey::named($key);
             }
 
             return $this->value[$key];
@@ -112,7 +112,7 @@ final class Data
             $part = $parts[$i];
 
             if (!\array_key_exists($part, $value)) {
-                throw Exception\FrontMatterDoesNotHaveKey::named($key);
+                throw Exception\DataDoesNotHaveKey::named($key);
             }
 
             $value = $value[$part];
@@ -121,7 +121,7 @@ final class Data
                 $count - 1 > $i
                 && !\is_array($value)
             ) {
-                throw Exception\FrontMatterDoesNotHaveKey::named($key);
+                throw Exception\DataDoesNotHaveKey::named($key);
             }
         }
 

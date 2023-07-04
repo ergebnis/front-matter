@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Exception;
 
-final class FrontMatterDoesNotHaveKey extends \InvalidArgumentException
+final class DataDoesNotHaveKey extends \InvalidArgumentException
 {
     public static function named(string $key): self
     {
         return new self(\sprintf(
-            'Front matter does not have a key named "%s".',
+            'Data does not have a key named "%s".',
             $key,
         ));
     }
