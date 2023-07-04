@@ -82,6 +82,9 @@ TXT);
 
 /** @var FrontMatter\Parsed $parsedWithFrontMatter */
 $parsedWithFrontMatter = $parser->parse($unparsedContentWithoutFrontMatter);
+
+var_dump($parsedWithFrontMatter->frontMatter()->data()->has('page.title')); // true
+var_dump($parsedWithFrontMatter->frontMatter()->data()->get('page.title')); // "Hello"
 ```
 
 :exclamation: The `YamlParser` will throw an [`Ergebnis\FrontMatter\Exception\FrontMatterCanNotBeParsed`](src/Exception/FrontMatterCanNotBeParsed.php) exception when the front matter is invalid YAML and an [`Ergebnis\FrontMatter\Exception\FrontMatterIsNotAnObject`](src/Exception/FrontMatterIsNotAnObject.php) exception when the front matter does not describe an object.

@@ -18,7 +18,7 @@ use Symfony\Component\Yaml;
 
 final class YamlParser implements Parser
 {
-    private const PATTERN = "{^(?:---)[\r\n|\n]*(?P<frontMatter>.*?)[\r\n|\n]+(?:---)[\r\n|\n]{0,1}(?P<bodyMatter>.*)$}s";
+    private const PATTERN = "{^(?P<frontMatterWithDelimiters>(?:---)[\r\n|\n]*(?P<frontMatterWithoutDelimiters>.*?)[\r\n|\n]+(?:---)[\r\n|\n]{0,1})(?P<bodyMatter>.*)$}s";
 
     public function hasFrontMatter(Content $content): bool
     {
@@ -36,17 +36,18 @@ final class YamlParser implements Parser
 
         $bodyMatter = BodyMatter::fromString($matches['bodyMatter']);
 
-        $rawFrontMatter = $matches['frontMatter'];
-
-        if ('' === $rawFrontMatter) {
+        if ('' === $matches['frontMatterWithoutDelimiters']) {
             return Parsed::create(
-                FrontMatter::empty(),
+                FrontMatter::create(
+                    Content::fromString($matches['frontMatterWithDelimiters']),
+                    Data::empty(),
+                ),
                 $bodyMatter,
             );
         }
 
         try {
-            $data = Yaml\Yaml::parse($rawFrontMatter);
+            $data = Yaml\Yaml::parse($matches['frontMatterWithoutDelimiters']);
         } catch (Yaml\Exception\ParseException) {
             throw Exception\FrontMatterCanNotBeParsed::create();
         }
@@ -56,7 +57,10 @@ final class YamlParser implements Parser
         }
 
         try {
-            $frontMatter = FrontMatter::fromArray($data);
+            $frontMatter = FrontMatter::create(
+                Content::fromString($matches['frontMatterWithDelimiters']),
+                Data::fromArray($data),
+            );
         } catch (FrontMatterHasInvalidKeys) {
             throw Exception\FrontMatterIsNotAnObject::create();
         }

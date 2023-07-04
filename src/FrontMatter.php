@@ -18,121 +18,37 @@ namespace Ergebnis\FrontMatter;
  */
 final class FrontMatter
 {
-    /**
-     * @param array<string, mixed> $value
-     */
-    private function __construct(private readonly array $value)
-    {
+    private function __construct(
+        private readonly Content $content,
+        private readonly Data $data,
+    ) {
     }
 
     public static function empty(): self
     {
-        return new self([]);
-    }
-
-    /**
-     * @param array<string, mixed> $value
-     *
-     * @throws Exception\FrontMatterHasInvalidKeys
-     */
-    public static function fromArray(array $value): self
-    {
-        $invalidKeys = \array_filter(\array_keys($value), static function ($key): bool {
-            return !\is_string($key);
-        });
-
-        if ([] !== $invalidKeys) {
-            throw Exception\FrontMatterHasInvalidKeys::create();
-        }
-
-        return new self($value);
-    }
-
-    public function has(string $key): bool
-    {
-        if (!\str_contains($key, '.')) {
-            return \array_key_exists(
-                $key,
-                $this->value,
-            );
-        }
-
-        /** @var array<int, string> $parts */
-        $parts = \explode(
-            '.',
-            $key,
+        return new self(
+            Content::empty(),
+            Data::empty(),
         );
-
-        $count = \count($parts);
-        $value = $this->value;
-
-        for ($i = 0; $i < $count; ++$i) {
-            $part = $parts[$i];
-
-            if (!\array_key_exists($part, $value)) {
-                return false;
-            }
-
-            $value = $value[$part];
-
-            if (
-                $count - 1 > $i
-                && !\is_array($value)
-            ) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
-    /**
-     * @throws Exception\FrontMatterDoesNotHaveKey
-     */
-    public function get(string $key): mixed
-    {
-        if (!\str_contains($key, '.')) {
-            if (!\array_key_exists($key, $this->value)) {
-                throw Exception\FrontMatterDoesNotHaveKey::named($key);
-            }
-
-            return $this->value[$key];
-        }
-
-        /** @var array<int, string> $parts */
-        $parts = \explode(
-            '.',
-            $key,
+    public static function create(
+        Content $content,
+        Data $data,
+    ): self {
+        return new self(
+            $content,
+            $data,
         );
-
-        $count = \count($parts);
-        $value = $this->value;
-
-        for ($i = 0; $i < $count; ++$i) {
-            $part = $parts[$i];
-
-            if (!\array_key_exists($part, $value)) {
-                throw Exception\FrontMatterDoesNotHaveKey::named($key);
-            }
-
-            $value = $value[$part];
-
-            if (
-                $count - 1 > $i
-                && !\is_array($value)
-            ) {
-                throw Exception\FrontMatterDoesNotHaveKey::named($key);
-            }
-        }
-
-        return $value;
     }
 
-    /**
-     * @return array<string, mixed>
-     */
-    public function toArray(): array
+    public function content(): Content
     {
-        return $this->value;
+        return $this->content;
+    }
+
+    public function data(): Data
+    {
+        return $this->data;
     }
 }

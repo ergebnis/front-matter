@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="5.13.1@086b94371304750d1c673315321a55d15fc59015">
-  <file src="src/FrontMatter.php">
+  <file src="src/Data.php">
     <DocblockTypeContradiction>
       <code>return !\is_string($key);</code>
     </DocblockTypeContradiction>
@@ -18,7 +18,7 @@
       <code>$data</code>
     </MixedArgumentTypeCoercion>
   </file>
-  <file src="test/Unit/FrontMatterTest.php">
+  <file src="test/Unit/DataTest.php">
     <MixedArgument>
       <code>$key</code>
       <code>$key</code>
@@ -36,7 +36,7 @@
       <code>$key</code>
     </MixedAssignment>
     <PossiblyUnusedMethod>
-      <code>provideFrontMatterWhereValueIsMissingWhenKeyUsesDotNotation</code>
+      <code>provideDataWhereValueIsMissingWhenKeyUsesDotNotation</code>
     </PossiblyUnusedMethod>
   </file>
 </files>

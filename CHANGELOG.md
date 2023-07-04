@@ -13,6 +13,7 @@ For a full diff see [`2.1.0...main`][2.1.0...main].
 - Dropped support for PHP 8.0 ([#393]), by [@localheinz]
 - Renamed `Parsed::fromFrontMatterAndContent()` to `Parsed::create()` ([#397]), by [@localheinz]
 - Extracted `BodyMatter` as a value object ([#398]), by [@localheinz]
+- Started composing `Content` and `Data` into `FrontMatter` ([#409]), by [@localheinz]
 
 ## [`2.1.0`][2.1.0]
 

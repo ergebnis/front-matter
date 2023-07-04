@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Ergebnis\FrontMatter\Test\Unit;
 
 use Ergebnis\FrontMatter\BodyMatter;
+use Ergebnis\FrontMatter\Content;
+use Ergebnis\FrontMatter\Data;
 use Ergebnis\FrontMatter\FrontMatter;
 use Ergebnis\FrontMatter\Parsed;
 use Ergebnis\FrontMatter\Test;
@@ -21,6 +23,8 @@ use PHPUnit\Framework;
 
 #[Framework\Attributes\CoversClass(Parsed::class)]
 #[Framework\Attributes\UsesClass(BodyMatter::class)]
+#[Framework\Attributes\UsesClass(Content::class)]
+#[Framework\Attributes\UsesClass(Data::class)]
 #[Framework\Attributes\UsesClass(FrontMatter::class)]
 final class ParsedTest extends Framework\TestCase
 {
@@ -30,11 +34,21 @@ final class ParsedTest extends Framework\TestCase
     {
         $faker = self::faker();
 
-        $frontMatter = FrontMatter::fromArray([
-            'foo' => $faker->words(),
-            'bar' => $faker->randomFloat(),
-            'baz' => $faker->randomNumber(),
-        ]);
+        $frontMatter = FrontMatter::create(
+            Content::fromString(<<<'TXT'
+---
+foo: "bar"
+bar:
+  - "baz"
+---
+TXT),
+            Data::fromArray([
+                'foo' => 'bar',
+                'bar' => [
+                    'baz',
+                ],
+            ]),
+        );
 
         $bodyMatter = BodyMatter::fromString($faker->realText());
 
