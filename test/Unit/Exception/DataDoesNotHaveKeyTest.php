@@ -17,8 +17,8 @@ use Ergebnis\FrontMatter\Exception;
 use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Exception\FrontMatterDoesNotHaveKey::class)]
-final class FrontMatterDoesNotHaveKeyTest extends Framework\TestCase
+#[Framework\Attributes\CoversClass(Exception\DataDoesNotHaveKey::class)]
+final class DataDoesNotHaveKeyTest extends Framework\TestCase
 {
     use Test\Util\Helper;
 
@@ -26,10 +26,10 @@ final class FrontMatterDoesNotHaveKeyTest extends Framework\TestCase
     {
         $key = self::faker()->word();
 
-        $exception = Exception\FrontMatterDoesNotHaveKey::named($key);
+        $exception = Exception\DataDoesNotHaveKey::named($key);
 
         $message = \sprintf(
-            'Front matter does not have a key named "%s".',
+            'Data does not have a key named "%s".',
             $key,
         );
 

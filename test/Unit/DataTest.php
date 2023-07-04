@@ -17,7 +17,7 @@ use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
 #[Framework\Attributes\CoversClass(Data::class)]
-#[Framework\Attributes\UsesClass(Exception\FrontMatterDoesNotHaveKey::class)]
+#[Framework\Attributes\UsesClass(Exception\DataDoesNotHaveKey::class)]
 #[Framework\Attributes\UsesClass(Exception\FrontMatterHasInvalidKeys::class)]
 final class DataTest extends Framework\TestCase
 {
@@ -163,13 +163,13 @@ final class DataTest extends Framework\TestCase
         self::assertTrue($data->has('head.meta.author'));
     }
 
-    public function testGetThrowsFrontMatterDoesNotHaveKeyExceptionWhenDataIsEmpty(): void
+    public function testGetThrowsDataDoesNotHaveKeyExceptionWhenDataIsEmpty(): void
     {
         $key = self::faker()->word();
 
         $data = Data::fromArray([]);
 
-        $this->expectException(Exception\FrontMatterDoesNotHaveKey::class);
+        $this->expectException(Exception\DataDoesNotHaveKey::class);
 
         $data->get($key);
     }
@@ -187,7 +187,7 @@ final class DataTest extends Framework\TestCase
 
         $data = Data::fromArray($value);
 
-        $this->expectException(Exception\FrontMatterDoesNotHaveKey::class);
+        $this->expectException(Exception\DataDoesNotHaveKey::class);
 
         $data->get($key);
     }
@@ -213,7 +213,7 @@ final class DataTest extends Framework\TestCase
     {
         $data = Data::fromArray($value);
 
-        $this->expectException(Exception\FrontMatterDoesNotHaveKey::class);
+        $this->expectException(Exception\DataDoesNotHaveKey::class);
 
         $data->get('head.meta.author');
     }
