@@ -20,17 +20,17 @@ final class YamlParser implements Parser
 {
     private const PATTERN = "{^(?:---)[\r\n|\n]*(?P<frontMatter>.*?)[\r\n|\n]+(?:---)[\r\n|\n]{0,1}(?P<bodyMatter>.*)$}s";
 
-    public function hasFrontMatter(UnparsedContent $content): bool
+    public function hasFrontMatter(Content $content): bool
     {
         return 1 === \preg_match(self::PATTERN, $content->toString());
     }
 
-    public function parse(UnparsedContent $unparsedContent): Parsed
+    public function parse(Content $content): Parsed
     {
-        if (1 !== \preg_match(self::PATTERN, $unparsedContent->toString(), $matches)) {
+        if (1 !== \preg_match(self::PATTERN, $content->toString(), $matches)) {
             return Parsed::create(
                 FrontMatter::empty(),
-                BodyMatter::fromString($unparsedContent->toString()),
+                BodyMatter::fromString($content->toString()),
             );
         }
 

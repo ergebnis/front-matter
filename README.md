@@ -41,11 +41,11 @@ use Ergebnis\FrontMatter;
 
 $parser = new FrontMatter\YamlParser();
 
-$unparsedContentWithoutFrontMatter = FrontMatter\UnparsedContent::fromString('Hello, how are you today?');
+$unparsedContentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how are you today?');
 
 $parser->hasFrontMatter($unparsedContentWithoutFrontMatter); // false
 
-$unparsedContentWithFrontMatter = FrontMatter\UnparsedContent::fromString(
+$unparsedContentWithFrontMatter = FrontMatter\Content::fromString(
     <<<TXT
 ---
 page:
@@ -69,12 +69,12 @@ use Ergebnis\FrontMatter;
 
 $parser = new FrontMatter\YamlParser();
 
-$unparsedContentWithoutFrontMatter = FrontMatter\UnparsedContent::fromString('Hello, how are you today?');
+$unparsedContentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how are you today?');
 
 /** @var FrontMatter\Parsed $parsedWithoutFrontMatter */
 $parsedWithoutFrontMatter = $parser->parse($unparsedContentWithoutFrontMatter);
 
-$unparsedContentWithFrontMatter = FrontMatter\UnparsedContent::fromString(
+$unparsedContentWithFrontMatter = FrontMatter\Content::fromString(
     <<<TXT
 ---
 page:
