@@ -22,6 +22,11 @@ final class Content
     {
     }
 
+    public static function empty(): self
+    {
+        return new self('');
+    }
+
     public static function fromString(string $value): self
     {
         return new self($value);

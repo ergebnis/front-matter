@@ -16,6 +16,7 @@ namespace Ergebnis\FrontMatter\Test\Unit;
 use Ergebnis\DataProvider;
 use Ergebnis\FrontMatter\BodyMatter;
 use Ergebnis\FrontMatter\Content;
+use Ergebnis\FrontMatter\Data;
 use Ergebnis\FrontMatter\Exception;
 use Ergebnis\FrontMatter\FrontMatter;
 use Ergebnis\FrontMatter\Parsed;
@@ -26,6 +27,7 @@ use PHPUnit\Framework;
 #[Framework\Attributes\CoversClass(YamlParser::class)]
 #[Framework\Attributes\UsesClass(BodyMatter::class)]
 #[Framework\Attributes\UsesClass(Content::class)]
+#[Framework\Attributes\UsesClass(Data::class)]
 #[Framework\Attributes\UsesClass(Exception\FrontMatterCanNotBeParsed::class)]
 #[Framework\Attributes\UsesClass(Exception\FrontMatterHasInvalidKeys::class)]
 #[Framework\Attributes\UsesClass(Exception\FrontMatterIsNotAnObject::class)]
@@ -326,7 +328,7 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::empty(),
             BodyMatter::fromString(<<<'TXT'
 ---
 TXT),
@@ -347,7 +349,7 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::empty(),
             BodyMatter::fromString(<<<'TXT'
 ---
 
@@ -371,7 +373,7 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::empty(),
             BodyMatter::fromString(<<<'TXT'
 ---
 <h1>
@@ -398,7 +400,10 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::create(
+                Content::empty(),
+                Data::empty(),
+            ),
             BodyMatter::fromString(<<<'TXT'
 ---
 
@@ -423,7 +428,7 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::empty(),
             BodyMatter::fromString(<<<'TXT'
 ----
 --
@@ -445,7 +450,13 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+---
+TXT),
+                Data::empty(),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
@@ -467,7 +478,14 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+---
+
+TXT),
+                Data::empty(),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
@@ -493,7 +511,14 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+---
+
+TXT),
+                Data::empty(),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 <h1>
@@ -520,7 +545,15 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+
+
+---
+TXT),
+                Data::empty(),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
@@ -544,7 +577,16 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+
+
+---
+
+TXT),
+                Data::empty(),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
@@ -572,7 +614,16 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+
+
+---
+
+TXT),
+                Data::empty(),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 <h1>
@@ -708,13 +759,23 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([
-                'foo' => 'bar',
-                'baz' => [
-                    'qux',
-                    'quz',
-                ],
-            ]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+foo: bar
+baz:
+    - qux
+    - quz
+---
+TXT),
+                Data::fromArray([
+                    'foo' => 'bar',
+                    'baz' => [
+                        'qux',
+                        'quz',
+                    ],
+                ]),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
@@ -741,13 +802,24 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([
-                'foo' => 'bar',
-                'baz' => [
-                    'qux',
-                    'quz',
-                ],
-            ]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+foo: bar
+baz:
+    - qux
+    - quz
+---
+
+TXT),
+                Data::fromArray([
+                    'foo' => 'bar',
+                    'baz' => [
+                        'qux',
+                        'quz',
+                    ],
+                ]),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 
@@ -778,13 +850,24 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([
-                'foo' => 'bar',
-                'baz' => [
-                    'qux',
-                    'quz',
-                ],
-            ]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+foo: bar
+baz:
+    - qux
+    - quz
+---
+
+TXT),
+                Data::fromArray([
+                    'foo' => 'bar',
+                    'baz' => [
+                        'qux',
+                        'quz',
+                    ],
+                ]),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 <h1>
@@ -815,13 +898,25 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([
-                'foo' => 'bar',
-                'baz' => [
-                    'qux',
-                    'quz',
-                ],
-            ]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+
+foo: bar
+baz:
+    - qux
+    - quz
+
+---
+TXT),
+                Data::fromArray([
+                    'foo' => 'bar',
+                    'baz' => [
+                        'qux',
+                        'quz',
+                    ],
+                ]),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
@@ -850,13 +945,26 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([
-                'foo' => 'bar',
-                'baz' => [
-                    'qux',
-                    'quz',
-                ],
-            ]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+
+foo: bar
+baz:
+    - qux
+    - quz
+
+---
+
+TXT),
+                Data::fromArray([
+                    'foo' => 'bar',
+                    'baz' => [
+                        'qux',
+                        'quz',
+                    ],
+                ]),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 
@@ -889,13 +997,26 @@ TXT);
         $parsed = $parser->parse($content);
 
         $expected = Parsed::create(
-            FrontMatter::fromArray([
-                'foo' => 'bar',
-                'baz' => [
-                    'qux',
-                    'quz',
-                ],
-            ]),
+            FrontMatter::create(
+                Content::fromString(<<<'TXT'
+---
+
+foo: bar
+baz:
+    - qux
+    - quz
+
+---
+
+TXT),
+                Data::fromArray([
+                    'foo' => 'bar',
+                    'baz' => [
+                        'qux',
+                        'quz',
+                    ],
+                ]),
+            ),
             BodyMatter::fromString(<<<'TXT'
 
 <h1>

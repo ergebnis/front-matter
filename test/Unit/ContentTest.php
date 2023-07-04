@@ -18,6 +18,13 @@ use PHPUnit\Framework;
 #[Framework\Attributes\CoversClass(Content::class)]
 final class ContentTest extends Framework\TestCase
 {
+    public function testEmptyReturnsContent(): void
+    {
+        $content = Content::empty();
+
+        self::assertSame('', $content->toString());
+    }
+
     #[Framework\Attributes\DataProviderExternal(DataProvider\StringProvider::class, 'arbitrary')]
     public function testFromStringReturnsContent(string $value): void
     {
