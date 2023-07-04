@@ -45,15 +45,13 @@ $unparsedContentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how
 
 $parser->hasFrontMatter($unparsedContentWithoutFrontMatter); // false
 
-$unparsedContentWithFrontMatter = FrontMatter\Content::fromString(
-    <<<TXT
+$unparsedContentWithFrontMatter = FrontMatter\Content::fromString(<<<TXT
 ---
 page:
   title: "Hello"
   description: "Good to see you, how can I help you?"
 ---
-TXT
-);
+TXT);
 
 $parser->hasFrontMatter($unparsedContentWithFrontMatter); // true
 ```
@@ -74,15 +72,13 @@ $unparsedContentWithoutFrontMatter = FrontMatter\Content::fromString('Hello, how
 /** @var FrontMatter\Parsed $parsedWithoutFrontMatter */
 $parsedWithoutFrontMatter = $parser->parse($unparsedContentWithoutFrontMatter);
 
-$unparsedContentWithFrontMatter = FrontMatter\Content::fromString(
-    <<<TXT
+$unparsedContentWithFrontMatter = FrontMatter\Content::fromString(<<<TXT
 ---
 page:
   title: "Hello"
   description: "Good to see you, how can I help you?"
 ---
-TXT
-);
+TXT);
 
 /** @var FrontMatter\Parsed $parsedWithFrontMatter */
 $parsedWithFrontMatter = $parser->parse($unparsedContentWithoutFrontMatter);
