@@ -18,17 +18,17 @@ namespace Ergebnis\FrontMatter;
  */
 final class BodyMatter
 {
-    private function __construct(private readonly string $value)
+    private function __construct(private readonly Content $content)
     {
     }
 
-    public static function fromString(string $value): self
+    public static function create(Content $content): self
     {
-        return new self($value);
+        return new self($content);
     }
 
-    public function toString(): string
+    public function content(): Content
     {
-        return $this->value;
+        return $this->content;
     }
 }

@@ -30,11 +30,11 @@ final class YamlParser implements Parser
         if (1 !== \preg_match(self::PATTERN, $content->toString(), $matches)) {
             return Parsed::create(
                 FrontMatter::empty(),
-                BodyMatter::fromString($content->toString()),
+                BodyMatter::create($content),
             );
         }
 
-        $bodyMatter = BodyMatter::fromString($matches['bodyMatter']);
+        $bodyMatter = BodyMatter::create(Content::fromString($matches['bodyMatter']));
 
         if ('' === $matches['frontMatterWithoutDelimiters']) {
             return Parsed::create(

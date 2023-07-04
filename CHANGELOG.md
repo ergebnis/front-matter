@@ -15,6 +15,7 @@ For a full diff see [`2.1.0...main`][2.1.0...main].
 - Extracted `BodyMatter` as a value object ([#398]), by [@localheinz]
 - Started composing `Content` and `Data` into `FrontMatter` ([#409]), by [@localheinz]
 - Renamed `Exception\FrontMatterDoesNotHaveKey` to `Exception\DataDoesNotHaveKey` ([#410]), by [@localheinz]
+- Started composing `Content` into `BodyMatter` ([#411]), by [@localheinz]
 
 ## [`2.1.0`][2.1.0]
 
@@ -111,5 +112,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#407]: https://github.com/ergebnis/front-matter/pull/407
 [#409]: https://github.com/ergebnis/front-matter/pull/409
 [#410]: https://github.com/ergebnis/front-matter/pull/410
+[#411]: https://github.com/ergebnis/front-matter/pull/411
 
 [@localheinz]: https://github.com/localheinz
