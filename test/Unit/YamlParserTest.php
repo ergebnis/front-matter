@@ -329,9 +329,9 @@ TXT);
 
         $expected = Parsed::create(
             FrontMatter::empty(),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 ---
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -350,10 +350,10 @@ TXT);
 
         $expected = Parsed::create(
             FrontMatter::empty(),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 ---
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -374,12 +374,12 @@ TXT);
 
         $expected = Parsed::create(
             FrontMatter::empty(),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 ---
 <h1>
     Hello
 </h1>
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -404,13 +404,13 @@ TXT);
                 Content::empty(),
                 Data::empty(),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 ---
 
 <h1>
     Hello
 </h1>
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -429,10 +429,10 @@ TXT);
 
         $expected = Parsed::create(
             FrontMatter::empty(),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 ----
 --
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -457,9 +457,9 @@ TXT);
 TXT),
                 Data::empty(),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -486,9 +486,9 @@ TXT);
 TXT),
                 Data::empty(),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -519,13 +519,13 @@ TXT);
 TXT),
                 Data::empty(),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
 <h1>
     Hello
 </h1>
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -554,9 +554,9 @@ TXT);
 TXT),
                 Data::empty(),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -587,9 +587,9 @@ TXT);
 TXT),
                 Data::empty(),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -624,13 +624,13 @@ TXT);
 TXT),
                 Data::empty(),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
 <h1>
     Hello
 </h1>
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -776,9 +776,9 @@ TXT),
                     ],
                 ]),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -820,10 +820,10 @@ TXT),
                     ],
                 ]),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -868,13 +868,13 @@ TXT),
                     ],
                 ]),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
 <h1>
     Hello
 </h1>
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -917,9 +917,9 @@ TXT),
                     ],
                 ]),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -965,10 +965,10 @@ TXT),
                     ],
                 ]),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);
@@ -1017,13 +1017,13 @@ TXT),
                     ],
                 ]),
             ),
-            BodyMatter::fromString(<<<'TXT'
+            BodyMatter::create(Content::fromString(<<<'TXT'
 
 <h1>
     Hello
 </h1>
 
-TXT),
+TXT)),
         );
 
         self::assertEquals($expected, $parsed);

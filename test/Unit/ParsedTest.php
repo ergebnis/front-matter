@@ -50,7 +50,7 @@ TXT),
             ]),
         );
 
-        $bodyMatter = BodyMatter::fromString($faker->realText());
+        $bodyMatter = BodyMatter::create(Content::fromString($faker->realText()));
 
         $parsed = Parsed::create(
             $frontMatter,

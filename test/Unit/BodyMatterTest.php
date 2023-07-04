@@ -13,18 +13,23 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit;
 
-use Ergebnis\DataProvider;
 use Ergebnis\FrontMatter\BodyMatter;
+use Ergebnis\FrontMatter\Content;
+use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
 #[Framework\Attributes\CoversClass(BodyMatter::class)]
+#[Framework\Attributes\UsesClass(Content::class)]
 final class BodyMatterTest extends Framework\TestCase
 {
-    #[Framework\Attributes\DataProviderExternal(DataProvider\StringProvider::class, 'arbitrary')]
-    public function testFromStringReturnsBodyMatter(string $value): void
-    {
-        $bodyMatter = BodyMatter::fromString($value);
+    use Test\Util\Helper;
 
-        self::assertSame($value, $bodyMatter->toString());
+    public function testCreateReturnsBodyMatter(): void
+    {
+        $content = Content::fromString(self::faker()->realText());
+
+        $bodyMatter = BodyMatter::create($content);
+
+        self::assertSame($content, $bodyMatter->content());
     }
 }
