@@ -16,7 +16,7 @@ namespace Ergebnis\FrontMatter;
 /**
  * @psalm-immutable
  */
-final class ParsedContent
+final class Parsed
 {
     private function __construct(
         private readonly FrontMatter $frontMatter,

@@ -17,7 +17,7 @@ use Ergebnis\DataProvider;
 use Ergebnis\FrontMatter\BodyMatter;
 use Ergebnis\FrontMatter\Exception;
 use Ergebnis\FrontMatter\FrontMatter;
-use Ergebnis\FrontMatter\ParsedContent;
+use Ergebnis\FrontMatter\Parsed;
 use Ergebnis\FrontMatter\Test;
 use Ergebnis\FrontMatter\UnparsedContent;
 use Ergebnis\FrontMatter\YamlParser;
@@ -30,7 +30,7 @@ use PHPUnit\Framework;
 #[Framework\Attributes\UsesClass(Exception\FrontMatterHasInvalidKeys::class)]
 #[Framework\Attributes\UsesClass(Exception\FrontMatterIsNotAnObject::class)]
 #[Framework\Attributes\UsesClass(FrontMatter::class)]
-#[Framework\Attributes\UsesClass(ParsedContent::class)]
+#[Framework\Attributes\UsesClass(Parsed::class)]
 final class YamlParserTest extends Framework\TestCase
 {
     use Test\Util\Helper;
@@ -315,7 +315,7 @@ TXT);
         self::assertTrue($parser->hasFrontMatter($unparsedContent));
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsFrontMatterDelimiter(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsFrontMatterDelimiter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -323,19 +323,19 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 ---
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsFrontMatterDelimiterWithTrailingWhitespace(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsFrontMatterDelimiterWithTrailingWhitespace(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -344,9 +344,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 ---
@@ -354,10 +354,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsFrontMatterDelimiterWithBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsFrontMatterDelimiterWithBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -368,9 +368,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 ---
@@ -380,10 +380,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsFrontMatterDelimiterWithTrailingWhitespaceAndBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsFrontMatterDelimiterWithTrailingWhitespaceAndBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -395,9 +395,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 ---
@@ -408,10 +408,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsAlmostEmptyFrontMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsAlmostEmptyFrontMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ----
@@ -420,9 +420,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 ----
@@ -430,10 +430,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsEmptyFrontMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsEmptyFrontMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -442,19 +442,19 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentHasEmptyFrontMatterAndBlankBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentHasEmptyFrontMatterAndBlankBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -464,19 +464,19 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentHasEmptyFrontMatterAndBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentHasEmptyFrontMatterAndBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -490,9 +490,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 
@@ -503,10 +503,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsEmptyFrontMatterWithWhitespace(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsEmptyFrontMatterWithWhitespace(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -517,19 +517,19 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentHasEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentHasEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -541,19 +541,19 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentHasEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentHasEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -569,9 +569,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([]),
             BodyMatter::fromString(<<<'TXT'
 
@@ -582,7 +582,7 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
     public function testParseThrowsFrontMatterCanNotBeParsedWhenFrontMatterCanNotBeParsed(): void
@@ -692,7 +692,7 @@ TXT);
         $parser->parse($unparsedContent);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsNonEmptyFrontMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsNonEmptyFrontMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -705,9 +705,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([
                 'foo' => 'bar',
                 'baz' => [
@@ -720,10 +720,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentHasNonEmptyFrontMatterAndBlankBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentHasNonEmptyFrontMatterAndBlankBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -738,9 +738,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([
                 'foo' => 'bar',
                 'baz' => [
@@ -754,10 +754,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentHasNonEmptyFrontMatterAndBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentHasNonEmptyFrontMatterAndBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -775,9 +775,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([
                 'foo' => 'bar',
                 'baz' => [
@@ -794,10 +794,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentIsNonEmptyFrontMatterWithWhitespace(): void
+    public function testParseReturnsParsedWhenUnparsedContentIsNonEmptyFrontMatterWithWhitespace(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -812,9 +812,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([
                 'foo' => 'bar',
                 'baz' => [
@@ -827,10 +827,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentHasNonEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentHasNonEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -847,9 +847,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([
                 'foo' => 'bar',
                 'baz' => [
@@ -863,10 +863,10 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 
-    public function testParseReturnsParsedContentWhenUnparsedContentHasNonEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
+    public function testParseReturnsParsedWhenUnparsedContentHasNonEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
         $unparsedContent = UnparsedContent::fromString(<<<'TXT'
 ---
@@ -886,9 +886,9 @@ TXT);
 
         $parser = new YamlParser();
 
-        $parsedContent = $parser->parse($unparsedContent);
+        $parsed = $parser->parse($unparsedContent);
 
-        $expected = ParsedContent::create(
+        $expected = Parsed::create(
             FrontMatter::fromArray([
                 'foo' => 'bar',
                 'baz' => [
@@ -905,6 +905,6 @@ TXT);
 TXT),
         );
 
-        self::assertEquals($expected, $parsedContent);
+        self::assertEquals($expected, $parsed);
     }
 }

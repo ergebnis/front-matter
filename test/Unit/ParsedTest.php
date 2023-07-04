@@ -15,18 +15,18 @@ namespace Ergebnis\FrontMatter\Test\Unit;
 
 use Ergebnis\FrontMatter\BodyMatter;
 use Ergebnis\FrontMatter\FrontMatter;
-use Ergebnis\FrontMatter\ParsedContent;
+use Ergebnis\FrontMatter\Parsed;
 use Ergebnis\FrontMatter\Test;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(ParsedContent::class)]
+#[Framework\Attributes\CoversClass(Parsed::class)]
 #[Framework\Attributes\UsesClass(BodyMatter::class)]
 #[Framework\Attributes\UsesClass(FrontMatter::class)]
-final class ParsedContentTest extends Framework\TestCase
+final class ParsedTest extends Framework\TestCase
 {
     use Test\Util\Helper;
 
-    public function testCreateReturnsParsedContent(): void
+    public function testCreateReturnsParsed(): void
     {
         $faker = self::faker();
 
@@ -38,12 +38,12 @@ final class ParsedContentTest extends Framework\TestCase
 
         $bodyMatter = BodyMatter::fromString($faker->realText());
 
-        $parsedContent = ParsedContent::create(
+        $parsed = Parsed::create(
             $frontMatter,
             $bodyMatter,
         );
 
-        self::assertSame($frontMatter, $parsedContent->frontMatter());
-        self::assertSame($bodyMatter, $parsedContent->bodyMatter());
+        self::assertSame($frontMatter, $parsed->frontMatter());
+        self::assertSame($bodyMatter, $parsed->bodyMatter());
     }
 }

@@ -25,10 +25,10 @@ final class YamlParser implements Parser
         return 1 === \preg_match(self::PATTERN, $content->toString());
     }
 
-    public function parse(UnparsedContent $unparsedContent): ParsedContent
+    public function parse(UnparsedContent $unparsedContent): Parsed
     {
         if (1 !== \preg_match(self::PATTERN, $unparsedContent->toString(), $matches)) {
-            return ParsedContent::create(
+            return Parsed::create(
                 FrontMatter::empty(),
                 BodyMatter::fromString($unparsedContent->toString()),
             );
@@ -39,7 +39,7 @@ final class YamlParser implements Parser
         $rawFrontMatter = $matches['frontMatter'];
 
         if ('' === $rawFrontMatter) {
-            return ParsedContent::create(
+            return Parsed::create(
                 FrontMatter::empty(),
                 $bodyMatter,
             );
@@ -61,7 +61,7 @@ final class YamlParser implements Parser
             throw Exception\FrontMatterIsNotAnObject::create();
         }
 
-        return ParsedContent::create(
+        return Parsed::create(
             $frontMatter,
             $bodyMatter,
         );
