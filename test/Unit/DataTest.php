@@ -148,12 +148,10 @@ final class DataTest extends Framework\TestCase
 
     public function testHasReturnsTrueWhenDataHasFullyExplodedPartsAndKeyUsesDotNotation(): void
     {
-        $faker = self::faker();
-
         $value = [
             'head' => [
                 'meta' => [
-                    'author' => $faker->name(),
+                    'author' => self::faker()->name(),
                 ],
             ],
         ];
