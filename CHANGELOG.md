@@ -88,6 +88,7 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [1.0.0]: https://github.com/ergebnis/front-matter/releases/tag/1.0.0
 [2.0.0]: https://github.com/ergebnis/front-matter/releases/tag/2.0.0
 [2.1.0]: https://github.com/ergebnis/front-matter/releases/tag/2.1.0
+[3.0.0]: https://github.com/ergebnis/front-matter/releases/tag/3.0.0
 
 [4e97e14...0.1.0]: https://github.com/ergebnis/front-matter/compare/4e97e14...0.1.0
 [0.1.0...0.2.0]: https://github.com/ergebnis/front-matter/compare/0.1.0...0.2.0
