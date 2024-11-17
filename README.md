@@ -6,14 +6,12 @@
 [![Renew](https://github.com/ergebnis/front-matter/workflows/Renew/badge.svg)](https://github.com/ergebnis/front-matter/actions)
 
 [![Code Coverage](https://codecov.io/gh/ergebnis/front-matter/branch/main/graph/badge.svg)](https://codecov.io/gh/ergebnis/front-matter)
-[![Type Coverage](https://shepherd.dev/github/ergebnis/front-matter/coverage.svg)](https://shepherd.dev/github/ergebnis/front-matter)
 
 [![Latest Stable Version](https://poser.pugx.org/ergebnis/front-matter/v/stable)](https://packagist.org/packages/ergebnis/front-matter)
 [![Total Downloads](https://poser.pugx.org/ergebnis/front-matter/downloads)](https://packagist.org/packages/ergebnis/front-matter)
 [![Monthly Downloads](http://poser.pugx.org/ergebnis/front-matter/d/monthly)](https://packagist.org/packages/ergebnis/front-matter)
 
 This project provides a [`composer`](https://getcomposer.org) package with a front matter parser.
-
 
 ## Installation
 
