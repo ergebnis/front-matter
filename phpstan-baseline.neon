@@ -1,0 +1,47 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to function is_string\\(\\) with string will always evaluate to true\\.$#"
+			count: 1
+			path: src/Data.php
+
+		-
+			message: "#^Parameter \\#2 \\$array of function array_key_exists expects array, mixed given\\.$#"
+			count: 2
+			path: src/Data.php
+
+		-
+			message: "#^Strict comparison using \\!\\=\\= between array\\{\\} and array\\{\\} will always evaluate to false\\.$#"
+			count: 1
+			path: src/Data.php
+
+		-
+			message: "#^Method DataTest\\:\\:provideDataWhereValueIsMissingWhenKeyUsesDotNotation\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: test/Unit/DataTest.php
+
+		-
+			message: "#^Method DataTest\\:\\:testGetThrowsFrontMatterDoesNotHaveValueExceptionWhenDataDoesNotHaveValueAndKeyUsesDotNotation\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: test/Unit/DataTest.php
+
+		-
+			message: "#^Method DataTest\\:\\:testHasReturnsFalseWhenDataDoesNotHaveValueWhenKeyUsesDotNotation\\(\\) has parameter \\$value with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: test/Unit/DataTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of method Ergebnis\\\\FrontMatter\\\\Data\\:\\:get\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: test/Unit/DataTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of method Ergebnis\\\\FrontMatter\\\\Data\\:\\:has\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: test/Unit/DataTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of static method Ergebnis\\\\FrontMatter\\\\Data\\:\\:fromArray\\(\\) expects array\\<string, mixed\\>, array\\|string given\\.$#"
+			count: 1
+			path: test/Unit/DataTest.php
+
