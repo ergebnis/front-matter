@@ -17,7 +17,7 @@
     "security": "https://github.com/ergebnis/front-matter/blob/main/.github/SECURITY.md"
   },
   "require": {
-    "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
+    "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
     "symfony/yaml": "^5.0.0 || ^6.0.0"
   },
   "require-dev": {
