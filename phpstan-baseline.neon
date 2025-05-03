@@ -13,12 +13,6 @@ parameters:
 			path: src/Data.php
 
 		-
-			message: '#^Strict comparison using \!\=\= between array\{\} and array\{\} will always evaluate to false\.$#'
-			identifier: notIdentical.alwaysFalse
-			count: 1
-			path: src/Data.php
-
-		-
 			message: '#^Parameter \#1 \$value of static method Ergebnis\\FrontMatter\\Data\:\:fromArray\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
