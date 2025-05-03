@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`3.2.0...main`][3.2.0...main].
 
+### Changed
+
+- Allowed installation of `symfony/yaml:^7.0.0` ([#712]), by [@localheinz]
+
 ## [`3.2.0`][3.2.0]
 
 For a full diff see [`3.1.0...3.2.0`][3.1.0...3.2.0].
@@ -141,5 +145,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#411]: https://github.com/ergebnis/front-matter/pull/411
 [#485]: https://github.com/ergebnis/front-matter/pull/485
 [#677]: https://github.com/ergebnis/front-matter/pull/677
+[#712]: https://github.com/ergebnis/front-matter/pull/712
 
 [@localheinz]: https://github.com/localheinz
