@@ -105,7 +105,7 @@ final class DataTest extends Framework\TestCase
     /**
      * @return \Generator<string, array{0: array}>
      */
-    public static function provideDataWhereValueIsMissingWhenKeyUsesDotNotation(): Generator
+    public static function provideDataWhereValueIsMissingWhenKeyUsesDotNotation(): iterable
     {
         $faker = self::faker();
 
