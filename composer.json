@@ -21,7 +21,7 @@
     "symfony/yaml": "^5.0.0 || ^6.0.0 || ^7.0.0"
   },
   "require-dev": {
-    "ergebnis/composer-normalize": "^2.47.0",
+    "ergebnis/composer-normalize": "^2.48.1",
     "ergebnis/data-provider": "^3.5.0",
     "ergebnis/license": "^2.6.0",
     "ergebnis/php-cs-fixer-config": "~6.53.0",
