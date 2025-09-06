@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`3.4.0...main`][3.4.0...main].
 
+### Added
+
+- Added support on PHP 8.5 ([#750]), by [@localheinz]
+
 ## [`3.4.0`][3.4.0]
 
 For a full diff see [`3.3.0...3.4.0`][3.3.0...3.4.0].
@@ -163,5 +167,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#677]: https://github.com/ergebnis/front-matter/pull/677
 [#712]: https://github.com/ergebnis/front-matter/pull/712
 [#747]: https://github.com/ergebnis/front-matter/pull/747
+[#750]: https://github.com/ergebnis/front-matter/pull/750
 
 [@localheinz]: https://github.com/localheinz
