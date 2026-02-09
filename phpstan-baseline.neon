@@ -60,3 +60,9 @@ parameters:
 			count: 1
 			path: test/Unit/DataTest.php
 
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: test/Unit/DataTest.php
+
