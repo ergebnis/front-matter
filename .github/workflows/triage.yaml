@@ -3,9 +3,11 @@
 name: "Triage"
 
 on: # yamllint disable-line rule:truthy
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers] -- required to label pull requests from forks using the bot token; the workflow does not check out untrusted code
     types:
       - "opened"
+
+permissions: {}
 
 jobs:
   label:
@@ -17,6 +19,6 @@ jobs:
 
     steps:
       - name: "Add labels based on branch name"
-        uses: "ergebnis/.github/actions/github/pull-request/add-label-based-on-branch-name@1.11.0"
+        uses: "ergebnis/.github/actions/github/pull-request/add-label-based-on-branch-name@9785f99b3546d64df9cb331449e7fcdc41885d25" # 1.11.0
         with:
           github-token: "${{ secrets.ERGEBNIS_BOT_TOKEN }}"
