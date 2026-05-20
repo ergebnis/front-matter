@@ -47,11 +47,9 @@ final class YamlParserTest extends Framework\TestCase
 
     public function testHasFrontMatterReturnsFalseWhenContentIsFrontMatterDelimiter(): void
     {
-        $content = Content::fromString(
-            <<<'TXT'
+        $content = Content::fromString(<<<'TXT'
 ---
-TXT
-        );
+TXT);
 
         $parser = new YamlParser();
 
