@@ -3,7 +3,7 @@
 name: "Triage"
 
 on: # yamllint disable-line rule:truthy
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers] -- required to label pull requests from forks using the bot token; the workflow does not check out untrusted code
     types:
       - "opened"
 
