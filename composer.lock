@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e35e6fbebca4d75bffc53d4c8523c872",
+    "content-hash": "559bcc704720bd72ba98961ed8621d8d",
     "packages": [
         {
             "name": "symfony/deprecation-contracts",
@@ -1515,16 +1515,16 @@
         },
         {
             "name": "ergebnis/rector-rules",
-            "version": "1.18.1",
+            "version": "1.18.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ergebnis/rector-rules.git",
-                "reference": "db1dd5b5f928f89b17392e7915f5e8458bd46df3"
+                "reference": "df9cb7a49bb42950ed32044be7b3dfbefe46b9e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ergebnis/rector-rules/zipball/db1dd5b5f928f89b17392e7915f5e8458bd46df3",
-                "reference": "db1dd5b5f928f89b17392e7915f5e8458bd46df3",
+                "url": "https://api.github.com/repos/ergebnis/rector-rules/zipball/df9cb7a49bb42950ed32044be7b3dfbefe46b9e5",
+                "reference": "df9cb7a49bb42950ed32044be7b3dfbefe46b9e5",
                 "shasum": ""
             },
             "require": {
@@ -1535,15 +1535,15 @@
             },
             "require-dev": {
                 "ergebnis/classy": "^3.0.0",
-                "ergebnis/composer-normalize": "^2.50.0",
+                "ergebnis/composer-normalize": "^2.52.0",
                 "ergebnis/data-provider": "^3.6.0",
                 "ergebnis/license": "^2.7.0",
-                "ergebnis/php-cs-fixer-config": "^6.60.2",
+                "ergebnis/php-cs-fixer-config": "^6.62.2",
                 "ergebnis/phpunit-slow-test-detector": "^2.24.0",
                 "phpstan/extension-installer": "^1.4.3",
                 "phpstan/phpstan-deprecation-rules": "^2.0.4",
                 "phpstan/phpstan-phpunit": "^2.0.16",
-                "phpstan/phpstan-strict-rules": "^2.0.10",
+                "phpstan/phpstan-strict-rules": "^2.0.11",
                 "phpunit/phpunit": "^9.6.33",
                 "sebastian/diff": "^4.0.6",
                 "symfony/filesystem": "^5.4.45",
@@ -1579,7 +1579,7 @@
                 "security": "https://github.com/ergebnis/rector-rules/blob/main/.github/SECURITY.md",
                 "source": "https://github.com/ergebnis/rector-rules"
             },
-            "time": "2026-04-13T16:13:31+00:00"
+            "time": "2026-07-06T08:20:15+00:00"
         },
         {
             "name": "erickskrauch/php-cs-fixer-custom-fixers",
@@ -2761,11 +2761,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.54",
+            "version": "2.2.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8be50c3992107dc837b17da4d140fbbdf9a5c5bd",
-                "reference": "8be50c3992107dc837b17da4d140fbbdf9a5c5bd",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/692db47b9dddb0487934e5236e77d48594aef921",
+                "reference": "692db47b9dddb0487934e5236e77d48594aef921",
                 "shasum": ""
             },
             "require": {
@@ -2787,6 +2787,17 @@
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Mirtes"
+                },
+                {
+                    "name": "Markus Staab"
+                },
+                {
+                    "name": "Vincent Langlet"
+                }
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
             "keywords": [
@@ -2810,7 +2821,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-29T13:31:09+00:00"
+            "time": "2026-07-29T17:39:32+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -4080,21 +4091,21 @@
         },
         {
             "name": "rector/rector",
-            "version": "2.4.3",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "891824c6c59f02a56a5dd58ea8edc44e6c0ece29"
+                "reference": "b8e68f058bca43e01a2e1caa51ef022d6551ed95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/891824c6c59f02a56a5dd58ea8edc44e6c0ece29",
-                "reference": "891824c6c59f02a56a5dd58ea8edc44e6c0ece29",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/b8e68f058bca43e01a2e1caa51ef022d6551ed95",
+                "reference": "b8e68f058bca43e01a2e1caa51ef022d6551ed95",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4|^8.0",
-                "phpstan/phpstan": "^2.1.48"
+                "phpstan/phpstan": "^2.2.6"
             },
             "conflict": {
                 "rector/rector-doctrine": "*",
@@ -4128,7 +4139,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.4.3"
+                "source": "https://github.com/rectorphp/rector/tree/2.6.1"
             },
             "funding": [
                 {
@@ -4136,7 +4147,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-05-12T11:17:24+00:00"
+            "time": "2026-08-03T17:30:34+00:00"
         },
         {
             "name": "sanmai/later",
