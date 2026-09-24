@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`3.6.0...main`][3.6.0...main].
 
+### Changed
+
+- Allowed installation on PHP 8.6 ([#951]), by [@localheinz]
+
 ## [`3.6.0`][3.6.0]
 
 For a full diff see [`3.5.0...3.6.0`][3.5.0...3.6.0].
@@ -190,5 +194,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#750]: https://github.com/ergebnis/front-matter/pull/750
 [#858]: https://github.com/ergebnis/front-matter/pull/858
 [#859]: https://github.com/ergebnis/front-matter/pull/859
+[#951]: https://github.com/ergebnis/front-matter/pull/951
 
 [@localheinz]: https://github.com/localheinz
