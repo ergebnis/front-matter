@@ -4,13 +4,13 @@
 
 The following versions of `ergebnis/front-matter` have active support:
 
-- `^3.6.0`
+- `^3.7.0`
 
 ## Unsupported Versions
 
 The following versions of `ergebnis/front-matter` have reached their end of life:
 
-- `<3.6.0`
+- `<3.7.0`
 
 ## Reporting a Vulnerability
 
