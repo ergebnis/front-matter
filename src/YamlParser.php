@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter;
 
-use Ergebnis\FrontMatter\Exception\FrontMatterHasInvalidKeys;
 use Symfony\Component\Yaml;
 
 final class YamlParser implements Parser
@@ -61,7 +60,7 @@ final class YamlParser implements Parser
                 Content::fromString($matches['frontMatterWithDelimiters']),
                 Data::fromArray($data),
             );
-        } catch (FrontMatterHasInvalidKeys) {
+        } catch (Exception\FrontMatterHasInvalidKeys) {
             throw Exception\FrontMatterIsNotAnObject::create();
         }
 
