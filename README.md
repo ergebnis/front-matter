@@ -9,7 +9,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/ergebnis/front-matter/v/stable)](https://packagist.org/packages/ergebnis/front-matter)
 [![Total Downloads](https://poser.pugx.org/ergebnis/front-matter/downloads)](https://packagist.org/packages/ergebnis/front-matter)
-[![Monthly Downloads](http://poser.pugx.org/ergebnis/front-matter/d/monthly)](https://packagist.org/packages/ergebnis/front-matter)
+[![Monthly Downloads](https://poser.pugx.org/ergebnis/front-matter/d/monthly)](https://packagist.org/packages/ergebnis/front-matter)
 
 This project provides a [`composer`](https://getcomposer.org) package with a front matter parser.
 
