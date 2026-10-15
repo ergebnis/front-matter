@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`3.7.0...main`][3.7.0...main].
 
+### Fixed
+
+- Required `symfony/yaml:^5.4.54 || ^6.4.45 || ^7.4.18 || ^8.1.6` ([#989]), by [@localheinz]
+
 ## [`3.7.0`][3.7.0]
 
 For a full diff see [`3.6.0...3.7.0`][3.6.0...3.7.0].
@@ -201,5 +205,6 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [#858]: https://github.com/ergebnis/front-matter/pull/858
 [#859]: https://github.com/ergebnis/front-matter/pull/859
 [#951]: https://github.com/ergebnis/front-matter/pull/951
+[#989]: https://github.com/ergebnis/front-matter/pull/989
 
 [@localheinz]: https://github.com/localheinz
