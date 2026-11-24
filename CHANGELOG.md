@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
-For a full diff see [`3.8.0...main`][3.8.0...main].
+For a full diff see [`3.9.0...main`][3.9.0...main].
+
+## [`3.9.0`][3.9.0]
+
+For a full diff see [`3.8.0...3.9.0`][3.8.0...3.9.0].
 
 ### Changed
 
@@ -197,7 +201,9 @@ For a full diff see [`4e97e14...0.1.0`][4e97e14...0.1.0].
 [3.7.1]: https://github.com/ergebnis/front-matter/releases/tag/3.7.1
 [3.7.1...3.8.0]: https://github.com/ergebnis/front-matter/compare/3.7.1...3.8.0
 [3.8.0]: https://github.com/ergebnis/front-matter/releases/tag/3.8.0
-[3.8.0...main]: https://github.com/ergebnis/front-matter/compare/3.8.0...main
+[3.8.0...3.9.0]: https://github.com/ergebnis/front-matter/compare/3.8.0...3.9.0
+[3.9.0]: https://github.com/ergebnis/front-matter/releases/tag/3.9.0
+[3.9.0...main]: https://github.com/ergebnis/front-matter/compare/3.9.0...main
 
 [#2]: https://github.com/ergebnis/front-matter/pull/2
 [#8]: https://github.com/ergebnis/front-matter/pull/8
