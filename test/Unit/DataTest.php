@@ -11,21 +11,19 @@ declare(strict_types=1);
  * @see https://github.com/ergebnis/front-matter
  */
 
-use Ergebnis\FrontMatter\Data;
-use Ergebnis\FrontMatter\Exception;
-use Ergebnis\FrontMatter\Test;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Data::class)]
-#[Framework\Attributes\UsesClass(Exception\DataDoesNotHaveKey::class)]
-#[Framework\Attributes\UsesClass(Exception\FrontMatterHasInvalidKeys::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\Data::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Exception\DataDoesNotHaveKey::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Exception\FrontMatterHasInvalidKeys::class)]
 final class DataTest extends Framework\TestCase
 {
-    use Test\Util\Helper;
+    use FrontMatter\Test\Util\Helper;
 
     public function testEmptyReturnsData(): void
     {
-        $data = Data::empty();
+        $data = FrontMatter\Data::empty();
 
         self::assertSame([], $data->toArray());
     }
@@ -34,9 +32,9 @@ final class DataTest extends Framework\TestCase
     {
         $value = self::faker()->words();
 
-        $this->expectException(Exception\FrontMatterHasInvalidKeys::class);
+        $this->expectException(FrontMatter\Exception\FrontMatterHasInvalidKeys::class);
 
-        Data::fromArray($value);
+        FrontMatter\Data::fromArray($value);
     }
 
     public function testFromArrayReturnsFrontMatter(): void
@@ -48,7 +46,7 @@ final class DataTest extends Framework\TestCase
             'title' => $faker->sentence(),
         ];
 
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
         self::assertSame($value, $data->toArray());
     }
@@ -57,7 +55,7 @@ final class DataTest extends Framework\TestCase
     {
         $key = self::faker()->word();
 
-        $data = Data::fromArray([]);
+        $data = FrontMatter\Data::fromArray([]);
 
         self::assertFalse($data->has($key));
     }
@@ -73,7 +71,7 @@ final class DataTest extends Framework\TestCase
             'title' => $faker->sentence(),
         ];
 
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
         self::assertFalse($data->has($key));
     }
@@ -89,7 +87,7 @@ final class DataTest extends Framework\TestCase
 
         $key = $faker->randomElement(\array_keys($value));
 
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
         self::assertTrue($data->has($key));
     }
@@ -97,7 +95,7 @@ final class DataTest extends Framework\TestCase
     #[Framework\Attributes\DataProvider('provideDataWhereValueIsMissingWhenKeyUsesDotNotation')]
     public function testHasReturnsFalseWhenDataDoesNotHaveValueWhenKeyUsesDotNotation(array $value): void
     {
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
         self::assertFalse($data->has('head.meta.author'));
     }
@@ -113,15 +111,15 @@ final class DataTest extends Framework\TestCase
             'head-not-present' => [
                 'other' => $faker->word(),
             ],
-            'head-present-but-value-is-string' => [
-                'head' => $faker->word(),
-            ],
             'head-present-but-value-is-array-where-keys-are-integers' => [
                 'head' => $faker->words(),
             ],
-            'head.meta-present-but-value-is-string' => [
-                'head' => [
-                    'meta' => $faker->word(),
+            'head-present-but-value-is-string' => [
+                'head' => $faker->word(),
+            ],
+            'head.meta-present-as-key' => [
+                'head.meta' => [
+                    'author' => $faker->word(),
                 ],
             ],
             'head.meta-present-but-value-is-array-where-keys-are-integers' => [
@@ -129,9 +127,9 @@ final class DataTest extends Framework\TestCase
                     'meta' => $faker->words(),
                 ],
             ],
-            'head.meta-present-as-key' => [
-                'head.meta' => [
-                    'author' => $faker->word(),
+            'head.meta-present-but-value-is-string' => [
+                'head' => [
+                    'meta' => $faker->word(),
                 ],
             ],
             'head.meta.author-present-as-key' => [
@@ -156,7 +154,7 @@ final class DataTest extends Framework\TestCase
             ],
         ];
 
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
         self::assertTrue($data->has('head.meta.author'));
     }
@@ -165,9 +163,9 @@ final class DataTest extends Framework\TestCase
     {
         $key = self::faker()->word();
 
-        $data = Data::fromArray([]);
+        $data = FrontMatter\Data::fromArray([]);
 
-        $this->expectException(Exception\DataDoesNotHaveKey::class);
+        $this->expectException(FrontMatter\Exception\DataDoesNotHaveKey::class);
 
         $data->get($key);
     }
@@ -183,9 +181,9 @@ final class DataTest extends Framework\TestCase
             'title' => $faker->sentence(),
         ];
 
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
-        $this->expectException(Exception\DataDoesNotHaveKey::class);
+        $this->expectException(FrontMatter\Exception\DataDoesNotHaveKey::class);
 
         $data->get($key);
     }
@@ -201,7 +199,7 @@ final class DataTest extends Framework\TestCase
 
         $key = $faker->randomElement(\array_keys($value));
 
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
         self::assertSame($value[$key], $data->get($key));
     }
@@ -209,9 +207,9 @@ final class DataTest extends Framework\TestCase
     #[Framework\Attributes\DataProvider('provideDataWhereValueIsMissingWhenKeyUsesDotNotation')]
     public function testGetThrowsFrontMatterDoesNotHaveValueExceptionWhenDataDoesNotHaveValueAndKeyUsesDotNotation(array $value): void
     {
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
-        $this->expectException(Exception\DataDoesNotHaveKey::class);
+        $this->expectException(FrontMatter\Exception\DataDoesNotHaveKey::class);
 
         $data->get('head.meta.author');
     }
@@ -228,7 +226,7 @@ final class DataTest extends Framework\TestCase
             ],
         ];
 
-        $data = Data::fromArray($value);
+        $data = FrontMatter\Data::fromArray($value);
 
         self::assertSame($author, $data->get('head.meta.author'));
     }

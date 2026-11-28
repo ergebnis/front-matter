@@ -13,20 +13,19 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit\Exception;
 
-use Ergebnis\FrontMatter\Exception;
-use Ergebnis\FrontMatter\Test;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Exception\DataDoesNotHaveKey::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\Exception\DataDoesNotHaveKey::class)]
 final class DataDoesNotHaveKeyTest extends Framework\TestCase
 {
-    use Test\Util\Helper;
+    use FrontMatter\Test\Util\Helper;
 
     public function testNamedReturnsException(): void
     {
         $key = self::faker()->word();
 
-        $exception = Exception\DataDoesNotHaveKey::named($key);
+        $exception = FrontMatter\Exception\DataDoesNotHaveKey::named($key);
 
         $message = \sprintf(
             'Data does not have a key named "%s".',

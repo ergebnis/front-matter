@@ -14,77 +14,70 @@ declare(strict_types=1);
 namespace Ergebnis\FrontMatter\Test\Unit;
 
 use Ergebnis\DataProvider;
-use Ergebnis\FrontMatter\BodyMatter;
-use Ergebnis\FrontMatter\Content;
-use Ergebnis\FrontMatter\Data;
-use Ergebnis\FrontMatter\Exception;
-use Ergebnis\FrontMatter\FrontMatter;
-use Ergebnis\FrontMatter\Parsed;
-use Ergebnis\FrontMatter\Test;
-use Ergebnis\FrontMatter\YamlParser;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(YamlParser::class)]
-#[Framework\Attributes\UsesClass(BodyMatter::class)]
-#[Framework\Attributes\UsesClass(Content::class)]
-#[Framework\Attributes\UsesClass(Data::class)]
-#[Framework\Attributes\UsesClass(Exception\FrontMatterCanNotBeParsed::class)]
-#[Framework\Attributes\UsesClass(Exception\FrontMatterHasInvalidKeys::class)]
-#[Framework\Attributes\UsesClass(Exception\FrontMatterIsNotAnObject::class)]
-#[Framework\Attributes\UsesClass(FrontMatter::class)]
-#[Framework\Attributes\UsesClass(Parsed::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\YamlParser::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\BodyMatter::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Content::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Data::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Exception\FrontMatterCanNotBeParsed::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Exception\FrontMatterHasInvalidKeys::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Exception\FrontMatterIsNotAnObject::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\FrontMatter::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Parsed::class)]
 final class YamlParserTest extends Framework\TestCase
 {
-    use Test\Util\Helper;
+    use FrontMatter\Test\Util\Helper;
 
     #[Framework\Attributes\DataProviderExternal(DataProvider\StringProvider::class, 'arbitrary')]
     public function testHasFrontMatterReturnsFalseWhenContentDoesNotHaveFrontMatter(string $value): void
     {
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
-        self::assertFalse($parser->hasFrontMatter(Content::fromString($value)));
+        self::assertFalse($parser->hasFrontMatter(FrontMatter\Content::fromString($value)));
     }
 
     public function testHasFrontMatterReturnsFalseWhenContentIsFrontMatterDelimiter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertFalse($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsFalseWhenContentIsFrontMatterDelimiterWithTrailingWhitespace(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertFalse($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsFalseWhenContentIsFrontMatterDelimiterWithBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 <h1>
     Hello
 </h1>
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertFalse($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsFalseWhenContentIsFrontMatterDelimiterWithTrailingWhitespaceAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 <h1>
@@ -92,51 +85,51 @@ TXT);
 </h1>
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertFalse($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsFalseWhenContentIsAlmostEmptyFrontMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ----
 --
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertFalse($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentIsEmptyFrontMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentHasEmptyFrontMatterAndBlankBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentHasEmptyFrontMatterAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 
@@ -146,28 +139,28 @@ TXT);
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentIsEmptyFrontMatterWithWhitespace(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentHasEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
@@ -175,14 +168,14 @@ TXT);
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentHasEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
@@ -194,14 +187,14 @@ TXT);
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentIsNonEmptyFrontMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -210,14 +203,14 @@ baz:
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentHasNonEmptyFrontMatterAndBlankBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -228,14 +221,14 @@ baz:
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentHasNonEmptyFrontMatterAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -249,14 +242,14 @@ baz:
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentIsNonEmptyFrontMatterWithWhitespace(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -267,14 +260,14 @@ baz:
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentHasNonEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -287,14 +280,14 @@ baz:
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testHasFrontMatterReturnsTrueWhenContentHasNonEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -310,24 +303,24 @@ baz:
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         self::assertTrue($parser->hasFrontMatter($content));
     }
 
     public function testParseReturnsParsedWhenContentIsFrontMatterDelimiter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::empty(),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::empty(),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 ---
 TXT)),
         );
@@ -337,18 +330,18 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentIsFrontMatterDelimiterWithTrailingWhitespace(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::empty(),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::empty(),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 TXT)),
@@ -359,20 +352,20 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentIsFrontMatterDelimiterWithBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 <h1>
     Hello
 </h1>
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::empty(),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::empty(),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 ---
 <h1>
     Hello
@@ -385,7 +378,7 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentIsFrontMatterDelimiterWithTrailingWhitespaceAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 <h1>
@@ -393,16 +386,16 @@ TXT)),
 </h1>
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::empty(),
-                Data::empty(),
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::empty(),
+                FrontMatter\Data::empty(),
             ),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 <h1>
@@ -416,18 +409,18 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentIsAlmostEmptyFrontMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ----
 --
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::empty(),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::empty(),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 ----
 --
 TXT)),
@@ -438,24 +431,24 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentIsEmptyFrontMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 TXT),
-                Data::empty(),
+                FrontMatter\Data::empty(),
             ),
-            BodyMatter::create(Content::empty()),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::empty()),
         );
 
         self::assertEquals($expected, $parsed);
@@ -463,26 +456,26 @@ TXT),
 
     public function testParseReturnsParsedWhenContentHasEmptyFrontMatterAndBlankBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 
 TXT),
-                Data::empty(),
+                FrontMatter\Data::empty(),
             ),
-            BodyMatter::create(Content::empty()),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::empty()),
         );
 
         self::assertEquals($expected, $parsed);
@@ -490,7 +483,7 @@ TXT),
 
     public function testParseReturnsParsedWhenContentHasEmptyFrontMatterAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 
@@ -500,20 +493,20 @@ TXT),
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 ---
 
 TXT),
-                Data::empty(),
+                FrontMatter\Data::empty(),
             ),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 
 <h1>
     Hello
@@ -527,28 +520,28 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentIsEmptyFrontMatterWithWhitespace(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
 ---
 TXT),
-                Data::empty(),
+                FrontMatter\Data::empty(),
             ),
-            BodyMatter::create(Content::empty()),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::empty()),
         );
 
         self::assertEquals($expected, $parsed);
@@ -556,7 +549,7 @@ TXT),
 
     public function testParseReturnsParsedWhenContentHasEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
@@ -564,22 +557,22 @@ TXT),
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
 ---
 
 TXT),
-                Data::empty(),
+                FrontMatter\Data::empty(),
             ),
-            BodyMatter::create(Content::empty()),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::empty()),
         );
 
         self::assertEquals($expected, $parsed);
@@ -587,7 +580,7 @@ TXT),
 
     public function testParseReturnsParsedWhenContentHasEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
@@ -599,22 +592,22 @@ TXT),
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 
 ---
 
 TXT),
-                Data::empty(),
+                FrontMatter\Data::empty(),
             ),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 
 <h1>
     Hello
@@ -628,114 +621,114 @@ TXT)),
 
     public function testParseThrowsFrontMatterCanNotBeParsedWhenFrontMatterCanNotBeParsed(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
-        $this->expectException(Exception\FrontMatterCanNotBeParsed::class);
+        $this->expectException(FrontMatter\Exception\FrontMatterCanNotBeParsed::class);
 
         $parser->parse($content);
     }
 
     public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsFalse(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 false
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
-        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
+        $this->expectException(FrontMatter\Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($content);
     }
 
     public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsTrue(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 true
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
-        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
+        $this->expectException(FrontMatter\Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($content);
     }
 
     public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsString(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
-        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
+        $this->expectException(FrontMatter\Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($content);
     }
 
     public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsInt(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 123
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
-        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
+        $this->expectException(FrontMatter\Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($content);
     }
 
     public function testParseThrowsInvalidFrontMatterWhenFrontMatterIsFloat(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 3.14
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
-        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
+        $this->expectException(FrontMatter\Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($content);
     }
 
     public function testParseThrowsFrontMatterIsNotAnObjectWhenFrontMatterIsArray(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 - "foo"
 - "bar"
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
-        $this->expectException(Exception\FrontMatterIsNotAnObject::class);
+        $this->expectException(FrontMatter\Exception\FrontMatterIsNotAnObject::class);
 
         $parser->parse($content);
     }
 
     public function testParseReturnsParsedWhenContentIsNonEmptyFrontMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -744,13 +737,13 @@ baz:
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -758,15 +751,15 @@ baz:
     - quz
 ---
 TXT),
-                Data::fromArray([
-                    'foo' => 'bar',
+                FrontMatter\Data::fromArray([
                     'baz' => [
                         'qux',
                         'quz',
                     ],
+                    'foo' => 'bar',
                 ]),
             ),
-            BodyMatter::create(Content::empty()),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::empty()),
         );
 
         self::assertEquals($expected, $parsed);
@@ -774,7 +767,7 @@ TXT),
 
     public function testParseReturnsParsedWhenContentHasNonEmptyFrontMatterAndBlankBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -785,13 +778,13 @@ baz:
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -800,15 +793,15 @@ baz:
 ---
 
 TXT),
-                Data::fromArray([
-                    'foo' => 'bar',
+                FrontMatter\Data::fromArray([
                     'baz' => [
                         'qux',
                         'quz',
                     ],
+                    'foo' => 'bar',
                 ]),
             ),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 
 
 TXT)),
@@ -819,7 +812,7 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentHasNonEmptyFrontMatterAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -833,13 +826,13 @@ baz:
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: bar
 baz:
@@ -848,15 +841,15 @@ baz:
 ---
 
 TXT),
-                Data::fromArray([
-                    'foo' => 'bar',
+                FrontMatter\Data::fromArray([
                     'baz' => [
                         'qux',
                         'quz',
                     ],
+                    'foo' => 'bar',
                 ]),
             ),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 
 <h1>
     Hello
@@ -870,7 +863,7 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentIsNonEmptyFrontMatterWithWhitespace(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -881,13 +874,13 @@ baz:
 ---
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -897,15 +890,15 @@ baz:
 
 ---
 TXT),
-                Data::fromArray([
-                    'foo' => 'bar',
+                FrontMatter\Data::fromArray([
                     'baz' => [
                         'qux',
                         'quz',
                     ],
+                    'foo' => 'bar',
                 ]),
             ),
-            BodyMatter::create(Content::empty()),
+            FrontMatter\BodyMatter::create(FrontMatter\Content::empty()),
         );
 
         self::assertEquals($expected, $parsed);
@@ -913,7 +906,7 @@ TXT),
 
     public function testParseReturnsParsedWhenContentHasNonEmptyFrontMatterWithWhitespaceAndBlankBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -926,13 +919,13 @@ baz:
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -943,15 +936,15 @@ baz:
 ---
 
 TXT),
-                Data::fromArray([
-                    'foo' => 'bar',
+                FrontMatter\Data::fromArray([
                     'baz' => [
                         'qux',
                         'quz',
                     ],
+                    'foo' => 'bar',
                 ]),
             ),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 
 
 TXT)),
@@ -962,7 +955,7 @@ TXT)),
 
     public function testParseReturnsParsedWhenContentHasNonEmptyFrontMatterWithWhitespaceAndBodyMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -978,13 +971,13 @@ baz:
 
 TXT);
 
-        $parser = new YamlParser();
+        $parser = new FrontMatter\YamlParser();
 
         $parsed = $parser->parse($content);
 
-        $expected = Parsed::create(
-            FrontMatter::create(
-                Content::fromString(<<<'TXT'
+        $expected = FrontMatter\Parsed::create(
+            FrontMatter\FrontMatter::create(
+                FrontMatter\Content::fromString(<<<'TXT'
 ---
 
 foo: bar
@@ -995,15 +988,15 @@ baz:
 ---
 
 TXT),
-                Data::fromArray([
-                    'foo' => 'bar',
+                FrontMatter\Data::fromArray([
                     'baz' => [
                         'qux',
                         'quz',
                     ],
+                    'foo' => 'bar',
                 ]),
             ),
-            BodyMatter::create(Content::fromString(<<<'TXT'
+            FrontMatter\BodyMatter::create(FrontMatter\Content::fromString(<<<'TXT'
 
 <h1>
     Hello
