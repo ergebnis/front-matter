@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit\Exception;
 
-use Ergebnis\FrontMatter\Exception;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Exception\FrontMatterCanNotBeParsed::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\Exception\FrontMatterCanNotBeParsed::class)]
 final class FrontMatterCanNotBeParsedTest extends Framework\TestCase
 {
     public function testCreateReturnsException(): void
     {
-        $exception = Exception\FrontMatterCanNotBeParsed::create();
+        $exception = FrontMatter\Exception\FrontMatterCanNotBeParsed::create();
 
         self::assertSame('Front matter can not be parsed.', $exception->getMessage());
     }

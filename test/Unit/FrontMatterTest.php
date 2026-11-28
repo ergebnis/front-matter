@@ -13,27 +13,25 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit;
 
-use Ergebnis\FrontMatter\Content;
-use Ergebnis\FrontMatter\Data;
-use Ergebnis\FrontMatter\FrontMatter;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(FrontMatter::class)]
-#[Framework\Attributes\UsesClass(Data::class)]
-#[Framework\Attributes\UsesClass(Content::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\FrontMatter::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Data::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Content::class)]
 final class FrontMatterTest extends Framework\TestCase
 {
     public function testEmptyReturnsFrontMatter(): void
     {
-        $frontMatter = FrontMatter::empty();
+        $frontMatter = FrontMatter\FrontMatter::empty();
 
-        self::assertEquals(Data::empty(), $frontMatter->data());
-        self::assertEquals(Content::empty(), $frontMatter->content());
+        self::assertEquals(FrontMatter\Data::empty(), $frontMatter->data());
+        self::assertEquals(FrontMatter\Content::empty(), $frontMatter->content());
     }
 
     public function testCreateReturnsFrontMatter(): void
     {
-        $content = Content::fromString(<<<'TXT'
+        $content = FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: "bar"
 bar:
@@ -41,14 +39,14 @@ bar:
 ---
 TXT);
 
-        $data = Data::fromArray([
-            'foo' => 'bar',
+        $data = FrontMatter\Data::fromArray([
             'bar' => [
                 'baz',
             ],
+            'foo' => 'bar',
         ]);
 
-        $frontMatter = FrontMatter::create(
+        $frontMatter = FrontMatter\FrontMatter::create(
             $content,
             $data,
         );

@@ -12,15 +12,15 @@ declare(strict_types=1);
  */
 
 use Ergebnis\DataProvider;
-use Ergebnis\FrontMatter\Content;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Content::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\Content::class)]
 final class ContentTest extends Framework\TestCase
 {
     public function testEmptyReturnsContent(): void
     {
-        $content = Content::empty();
+        $content = FrontMatter\Content::empty();
 
         self::assertSame('', $content->toString());
     }
@@ -28,7 +28,7 @@ final class ContentTest extends Framework\TestCase
     #[Framework\Attributes\DataProviderExternal(DataProvider\StringProvider::class, 'arbitrary')]
     public function testFromStringReturnsContent(string $value): void
     {
-        $content = Content::fromString($value);
+        $content = FrontMatter\Content::fromString($value);
 
         self::assertSame($value, $content->toString());
     }

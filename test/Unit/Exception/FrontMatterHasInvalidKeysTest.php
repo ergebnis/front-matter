@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit\Exception;
 
-use Ergebnis\FrontMatter\Exception;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Exception\FrontMatterHasInvalidKeys::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\Exception\FrontMatterHasInvalidKeys::class)]
 final class FrontMatterHasInvalidKeysTest extends Framework\TestCase
 {
     public function testCreateReturnsException(): void
     {
-        $exception = Exception\FrontMatterHasInvalidKeys::create();
+        $exception = FrontMatter\Exception\FrontMatterHasInvalidKeys::create();
 
         self::assertSame('Front matter contains keys that are not string.', $exception->getMessage());
     }

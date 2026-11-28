@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit\Exception;
 
-use Ergebnis\FrontMatter\Exception;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Exception\FrontMatterIsNotAnObject::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\Exception\FrontMatterIsNotAnObject::class)]
 final class FrontMatterIsNotAnObjectTest extends Framework\TestCase
 {
     public function testCreateReturnsException(): void
     {
-        $exception = Exception\FrontMatterIsNotAnObject::create();
+        $exception = FrontMatter\Exception\FrontMatterIsNotAnObject::create();
 
         self::assertSame('Front matter is not an object.', $exception->getMessage());
     }

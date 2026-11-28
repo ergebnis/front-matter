@@ -13,46 +13,41 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit;
 
-use Ergebnis\FrontMatter\BodyMatter;
-use Ergebnis\FrontMatter\Content;
-use Ergebnis\FrontMatter\Data;
-use Ergebnis\FrontMatter\FrontMatter;
-use Ergebnis\FrontMatter\Parsed;
-use Ergebnis\FrontMatter\Test;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(Parsed::class)]
-#[Framework\Attributes\UsesClass(BodyMatter::class)]
-#[Framework\Attributes\UsesClass(Content::class)]
-#[Framework\Attributes\UsesClass(Data::class)]
-#[Framework\Attributes\UsesClass(FrontMatter::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\Parsed::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\BodyMatter::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Content::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Data::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\FrontMatter::class)]
 final class ParsedTest extends Framework\TestCase
 {
-    use Test\Util\Helper;
+    use FrontMatter\Test\Util\Helper;
 
     public function testCreateReturnsParsed(): void
     {
         $faker = self::faker();
 
-        $frontMatter = FrontMatter::create(
-            Content::fromString(<<<'TXT'
+        $frontMatter = FrontMatter\FrontMatter::create(
+            FrontMatter\Content::fromString(<<<'TXT'
 ---
 foo: "bar"
 bar:
   - "baz"
 ---
 TXT),
-            Data::fromArray([
-                'foo' => 'bar',
+            FrontMatter\Data::fromArray([
                 'bar' => [
                     'baz',
                 ],
+                'foo' => 'bar',
             ]),
         );
 
-        $bodyMatter = BodyMatter::create(Content::fromString($faker->realText()));
+        $bodyMatter = FrontMatter\BodyMatter::create(FrontMatter\Content::fromString($faker->realText()));
 
-        $parsed = Parsed::create(
+        $parsed = FrontMatter\Parsed::create(
             $frontMatter,
             $bodyMatter,
         );

@@ -13,22 +13,20 @@ declare(strict_types=1);
 
 namespace Ergebnis\FrontMatter\Test\Unit;
 
-use Ergebnis\FrontMatter\BodyMatter;
-use Ergebnis\FrontMatter\Content;
-use Ergebnis\FrontMatter\Test;
+use Ergebnis\FrontMatter;
 use PHPUnit\Framework;
 
-#[Framework\Attributes\CoversClass(BodyMatter::class)]
-#[Framework\Attributes\UsesClass(Content::class)]
+#[Framework\Attributes\CoversClass(FrontMatter\BodyMatter::class)]
+#[Framework\Attributes\UsesClass(FrontMatter\Content::class)]
 final class BodyMatterTest extends Framework\TestCase
 {
-    use Test\Util\Helper;
+    use FrontMatter\Test\Util\Helper;
 
     public function testCreateReturnsBodyMatter(): void
     {
-        $content = Content::fromString(self::faker()->realText());
+        $content = FrontMatter\Content::fromString(self::faker()->realText());
 
-        $bodyMatter = BodyMatter::create($content);
+        $bodyMatter = FrontMatter\BodyMatter::create($content);
 
         self::assertSame($content, $bodyMatter->content());
     }
